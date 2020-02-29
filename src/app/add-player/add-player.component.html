@@ -1,0 +1,82 @@
+<form [formGroup]="playerForm">
+  <div>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Imię</mat-label>
+        <input id="name" formControlName="name" matInput placeholder="Imię" />
+      </mat-form-field>
+    </p>
+    <p
+      class="alert"
+      *ngIf="playerForm.get('name').invalid && playerForm.get('name').dirty"
+    >
+      Pole jest wyamgane, zakres znaków 3-15
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Nazwisko</mat-label>
+        <input
+          id="surname"
+          formControlName="surname"
+          matInput
+          placeholder="Nazwisko"
+        />
+      </mat-form-field>
+    </p>
+    <p
+      class="alert"
+      *ngIf="
+        playerForm.get('surname').invalid && playerForm.get('surname').dirty
+      "
+    >
+      Pole jest wyamgane, zakres znaków 3-15
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Wiek</mat-label>
+        <input id="age" formControlName="age" matInput placeholder="Wiek" />
+      </mat-form-field>
+    </p>
+    <p
+      class="alert"
+      *ngIf="playerForm.get('age').invalid && playerForm.get('age').dirty"
+    >
+      Pole jest wyamgane i musi być liczbą
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Klub</mat-label>
+        <input id="club" formControlName="club" matInput placeholder="Klub" />
+      </mat-form-field>
+    </p>
+    <p
+      class="alert"
+      *ngIf="playerForm.get('club').invalid && playerForm.get('club').dirty"
+    >
+      Pole jest wyamgane, zakres znaków 3-15
+    </p>
+
+    <mat-form-field>
+      <mat-label>Pozycja</mat-label>
+      <mat-select id="position" formControlName="position" required>
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{ food.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <p></p>
+
+    <button
+      type="button"
+      (click)="onSubmit()"
+      [disabled]="playerForm.invalid"
+      class="btn btn-success"
+    >
+      Dodaj zawodnika
+    </button>
+  </div>
+</form>
