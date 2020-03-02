@@ -1,0 +1,81 @@
+<form [formGroup]="teamForm">
+  <div>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Nazwa</mat-label>
+        <input id="name" formControlName="name" matInput placeholder="Imię" />
+      </mat-form-field>
+    </p>
+    <p
+      class="alert"
+      *ngIf="teamForm.get('name').invalid && teamForm.get('name').dirty"
+    >
+      Pole jest wyamgane, zakres znaków 3-30
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Trener</mat-label>
+        <input
+          id="coach"
+          formControlName="coach"
+          matInput
+          placeholder="Trener"
+        />
+      </mat-form-field>
+    </p>
+    <p
+      class="alert"
+      *ngIf="teamForm.get('coach').invalid && teamForm.get('coach').dirty"
+    >
+      Pole jest wyamgane, zakres znaków 3-15
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Stadion</mat-label>
+        <input
+          id="stadium"
+          formControlName="stadium"
+          matInput
+          placeholder="Stadion"
+        />
+      </mat-form-field>
+    </p>
+    <p
+      class="alert"
+      *ngIf="teamForm.get('stadium').invalid && teamForm.get('stadium').dirty"
+    >
+      Pole jest wyamgane, zakres znaków 3-15
+    </p>
+
+    <button
+      type="button"
+      (click)="addPlayers()"
+      [disabled]="teamForm.invalid"
+      class="btn btn-success"
+    >
+      Uzupełnij skład
+    </button>
+  </div>
+</form>
+<div id="addPlayers" style="display:none">
+  <table>
+    <tr>
+      <th mat-sort-header="name">Imię</th>
+      <th mat-sort-header="surname">Nazwisko</th>
+      <th mat-sort-header="age">Wiek</th>
+      <th mat-sort-header="position">Pozycja</th>
+    </tr>
+
+    <tr *ngFor="let player of selectedPlayers">
+      <td>{{ player.name }}</td>
+      <td>{{ player.surname }}</td>
+      <td>{{ player.age }}</td>
+      <td>{{ player.position }}</td>
+    </tr>
+  </table>
+
+  <div>Czy napewno chcesz dodać drużyne?</div>
+  <button type="button" class="btn btn-success" (click)="onSumbit()">
+    Dodaj
+  </button>
+</div>

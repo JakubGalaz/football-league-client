@@ -15,9 +15,13 @@ import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
 import { from } from "rxjs";
 import { MatSelectModule } from "@angular/material/select";
+import { HttpClientModule } from "@angular/common/http";
+import { PlayerServiceService } from "./player-service.service";
+import { AddTeamComponent } from './add-team/add-team.component';
+import { AddProtocolComponent } from './add-protocol/add-protocol.component';
 
 @NgModule({
-  declarations: [AppComponent, AddPlayerComponent],
+  declarations: [AppComponent, AddPlayerComponent, AddTeamComponent, AddProtocolComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,9 +36,10 @@ import { MatSelectModule } from "@angular/material/select";
     MatInputModule,
     FormsModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [PlayerServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

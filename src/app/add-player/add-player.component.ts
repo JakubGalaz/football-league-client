@@ -6,6 +6,7 @@ import {
   AbstractControl
 } from "@angular/forms";
 import { Player } from "../Player";
+import { PlayerServiceService } from "../player-service.service";
 
 interface Position {
   value: string;
@@ -29,7 +30,7 @@ export class AddPlayerComponent implements OnInit {
     { value: "Midfielder", viewValue: "Pomocnik" }
   ];
 
-  constructor() {}
+  constructor(private playerService: PlayerServiceService) {}
 
   ngOnInit(): void {
     this.playerForm = new FormGroup({
@@ -67,8 +68,19 @@ export class AddPlayerComponent implements OnInit {
     this.message.position = this.playerForm.value.position;
     this.message.surname = this.playerForm.value.surname;
     this.message.club = this.playerForm.value.club;
+    this.message.goals = 0;
+    this.message.assists = 0;
+    this.message.yellowCards = 0;
+    this.message.redCards = 0;
 
-    console.log(this.message);
+    const newPlayer: Player = {
+      name: this.message.name,
+      age: this.message.age
+    };
+
+    this.playerService.postPlayer(this.message).subscribe(player => {
+      console.log("Wysłano player: " + player);
+    });
   }
 }
 
