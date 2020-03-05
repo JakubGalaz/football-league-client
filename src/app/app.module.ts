@@ -17,11 +17,17 @@ import { from } from "rxjs";
 import { MatSelectModule } from "@angular/material/select";
 import { HttpClientModule } from "@angular/common/http";
 import { PlayerServiceService } from "./player-service.service";
-import { AddTeamComponent } from './add-team/add-team.component';
-import { AddProtocolComponent } from './add-protocol/add-protocol.component';
+import { AddTeamComponent } from "./add-team/add-team.component";
+import { AddProtocolComponent } from "./add-protocol/add-protocol.component";
+import { TeamServiceService } from "./team-service.service";
 
 @NgModule({
-  declarations: [AppComponent, AddPlayerComponent, AddTeamComponent, AddProtocolComponent],
+  declarations: [
+    AppComponent,
+    AddPlayerComponent,
+    AddTeamComponent,
+    AddProtocolComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -39,7 +45,7 @@ import { AddProtocolComponent } from './add-protocol/add-protocol.component';
     MatSelectModule,
     HttpClientModule
   ],
-  providers: [PlayerServiceService],
+  providers: [PlayerServiceService, TeamServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

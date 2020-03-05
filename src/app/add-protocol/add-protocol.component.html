@@ -1,1 +1,134 @@
-<p>add-protocol works!</p>
+<body>
+  <form [formGroup]="protocolForm">
+    <div class="myForm">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Sędzia</mat-label>
+          <input
+            id="refree"
+            formControlName="refree"
+            matInput
+            placeholder="Sędzia"
+          />
+        </mat-form-field>
+      </p>
+      <p
+        class="alert"
+        *ngIf="
+          protocolForm.get('refree').invalid && protocolForm.get('refree').dirty
+        "
+      >
+        Pole jest wyamgane, zakres znaków 3-30
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label>Gospodarz</mat-label>
+          <mat-select
+            id="host"
+            formControlName="host"
+            (selectionChange)="selectHost($event)"
+          >
+            <mat-option *ngFor="let team of allTeams" [value]="team.name">
+              {{ team.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <mat-label>Gość</mat-label>
+          <mat-select id="guest" formControlName="guest">
+            <mat-option *ngFor="let team of aviableTeams" [value]="team.name">
+              {{ team.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+
+      <button
+        type="button"
+        (click)="addPlayers()"
+        [disabled]="protocolForm.invalid"
+        class="btn btn-success"
+      >
+        Uzupełnij skład
+      </button>
+    </div>
+  </form>
+
+  <div id="hostPlayers" class="hostPlayers">
+    <form [formGroup]="hostPlayersForm">
+      <mat-form-field>
+        <mat-label>Bramkarz</mat-label>
+        <mat-select
+          id="hostGoalkeeper"
+          formControlName="hostGoalkeeper"
+          (selectionChange)="selectHostGoalkeeper($event)"
+          required
+        >
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let player of hostPlayers" [value]="player">
+            {{ player.name }} {{ player.surname }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div id="pitch" class="test">
+    <main style="opacity: 1;" class="">
+      <div class="static">
+        <p
+          style="opacity: 1; display: block; transform: translateX(0px) translateY(0px);"
+          class="js-subheading"
+        ></p>
+        <div
+          style="opacity: 1; display: block; transform: translateX(0px) translateY(0px);"
+          class="js-switcher switcher"
+        >
+          <a href="#" class="js-switch disabled switch-btn">HOME</a
+          ><a href="#" class="js-switch switch-btn">AWAY</a>
+        </div>
+      </div>
+      <div class="js-stage stage texture">
+        <div
+          style="opacity: 1; transform: translateZ(-200px) translateY(0px);"
+          class="js-world world"
+        >
+          <div class="terrain js-terrain">
+            <div class="field field--alt"></div>
+            <div class="field ground">
+              <div class="field__texture field__texture--gradient">
+                Jakub Gałązka
+              </div>
+              <div class="field__texture field__texture--gradient-b"></div>
+              <div class="field__texture field__texture--grass"></div>
+              <div class="field__line field__line--goal">
+                {{ hostGoalkeeper.surname }}
+              </div>
+              <div
+                class="field__line field__line--goal field__line--goal--far"
+              ></div>
+              <div class="field__line field__line--outline"></div>
+              <div class="field__line field__line--penalty"></div>
+              <div class="field__line field__line--penalty-arc"></div>
+              <div
+                class="field__line field__line--penalty-arc field__line--penalty-arc--far"
+              ></div>
+              <div class="field__line field__line--mid">Krychowiak</div>
+              <div class="field__line field__line--circle"></div>
+              <div
+                class="field__line field__line--penalty field__line--penalty--far"
+              ></div>
+            </div>
+            <div class="field__side field__side--front"></div>
+            <div class="field__side field__side--left"></div>
+            <div class="field__side field__side--right"></div>
+            <div class="field__side field__side--back"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
