@@ -1,4 +1,8 @@
 <body>
+  <div>
+    {{ protocolForm.value.host + " " }} vs {{ " " + protocolForm.value.guest }}
+  </div>
+  <p></p>
   <form [formGroup]="protocolForm">
     <div class="myForm">
       <p>
@@ -54,81 +58,690 @@
       >
         Uzupełnij skład
       </button>
+      <p></p>
+      <div>
+        <button (click)="homeOrAway()" type="button" class="btn btn-info">
+          Goście/Gospodarze
+        </button>
+      </div>
+      <div>
+        <button (click)="createProtocol()" type="button" class="btn btn-info">
+          Dodaj Protokół
+        </button>
+      </div>
     </div>
   </form>
 
-  <div id="hostPlayers" class="hostPlayers">
-    <form [formGroup]="hostPlayersForm">
-      <mat-form-field>
-        <mat-label>Bramkarz</mat-label>
-        <mat-select
-          id="hostGoalkeeper"
-          formControlName="hostGoalkeeper"
-          (selectionChange)="selectHostGoalkeeper($event)"
-          required
-        >
-          <mat-option>--</mat-option>
-          <mat-option *ngFor="let player of hostPlayers" [value]="player">
-            {{ player.name }} {{ player.surname }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </form>
-  </div>
+  <div *ngIf="isHome === true; then Home"></div>
+  <div *ngIf="isHome === false; then Away"></div>
 
-  <div id="pitch" class="test">
-    <main style="opacity: 1;" class="">
-      <div class="static">
-        <p
-          style="opacity: 1; display: block; transform: translateX(0px) translateY(0px);"
-          class="js-subheading"
-        ></p>
-        <div
-          style="opacity: 1; display: block; transform: translateX(0px) translateY(0px);"
-          class="js-switcher switcher"
-        >
-          <a href="#" class="js-switch disabled switch-btn">HOME</a
-          ><a href="#" class="js-switch switch-btn">AWAY</a>
-        </div>
+  <ng-template #Home>
+    <div>
+      Goście
+    </div>
+    <div>
+      <div id="hostPlayers" class="hostPlayers">
+        <form [formGroup]="hostPlayersForm">
+          <mat-form-field>
+            <mat-label>Bramkarz</mat-label>
+            <mat-select
+              id="hostGoalkeeper"
+              formControlName="hostGoalkeeper"
+              (selectionChange)="selectHostGoalkeeper($event)"
+              required
+            >
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let player of hostPlayers" [value]="player">
+                {{ player.name }} {{ player.surname }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <p>
+            <mat-form-field>
+              <mat-label>Lewy obrońca</mat-label>
+              <mat-select
+                id="hostLeftDefender"
+                formControlName="hostLeftDefender"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let player of hostPlayers" [value]="player">
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <mat-label>Środkowy obrnońca </mat-label>
+              <mat-select
+                id="hostLeftMidDefender"
+                formControlName="hostLeftMidDefender"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let player of hostPlayers" [value]="player">
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <mat-label>Środkowy obrońca</mat-label>
+              <mat-select
+                id="hostRightMidDefender"
+                formControlName="hostRightMidDefender"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let player of hostPlayers" [value]="player">
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <mat-label>Prawy obrońca</mat-label>
+              <mat-select
+                id="hostRighttDefender"
+                formControlName="hostRightDefender"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let player of hostPlayers" [value]="player">
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <mat-label>Lewy pomocnik</mat-label>
+              <mat-select
+                id="hostLeftMid"
+                formControlName="hostLeftMid"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let player of hostPlayers" [value]="player">
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <mat-label>Prawy pomocnik</mat-label>
+              <mat-select
+                id="hostRightMid"
+                formControlName="hostRightMid"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let player of hostPlayers" [value]="player">
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Środkowy pomocnik</mat-label>
+              <mat-select
+                id="hostMidfielder"
+                formControlName="hostMidfielder"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let player of hostPlayers" [value]="player">
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Lewy skrzydłowy</mat-label>
+              <mat-select
+                id="hostLeftWinger"
+                formControlName="hostLeftWinger"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let player of hostPlayers" [value]="player">
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Prawy skrzydłowy</mat-label>
+              <mat-select
+                id="hostRightWinger"
+                formControlName="hostRightWinger"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let player of hostPlayers" [value]="player">
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Środkowy napastnik</mat-label>
+              <mat-select
+                id="hostStricker"
+                formControlName="hostStricker"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let player of hostPlayers" [value]="player">
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+        </form>
       </div>
-      <div class="js-stage stage texture">
-        <div
-          style="opacity: 1; transform: translateZ(-200px) translateY(0px);"
-          class="js-world world"
+    </div>
+
+    <div class="addGoal">
+      <form [formGroup]="guestGoalForm">
+        <button
+          type="button"
+          class="btn btn-success"
+          [disabled]="guestGoalForm.invalid"
+          (click)="addGuestGoal()"
         >
-          <div class="terrain js-terrain">
-            <div class="field field--alt"></div>
-            <div class="field ground">
-              <div class="field__texture field__texture--gradient">
-                Jakub Gałązka
+          Dodaj bramkę
+        </button>
+
+        <div>
+          <p>
+            <mat-form-field>
+              <mat-label>Strzelec bramki</mat-label>
+              <mat-select id="guestStrticker" formControlName="guestStricker">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let player of hostPlayers" [value]="player">
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Asystent</mat-label>
+              <mat-select id="guestAssistant" formControlName="guestAssitant">
+                <mat-option>Brak</mat-option>
+                <mat-option *ngFor="let player of hostPlayers" [value]="player">
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Minuta</mat-label>
+              <input
+                id="guestGoalMinute"
+                formControlName="guestGoalMinute"
+                matInput
+                placeholder="Sędzia"
+              />
+            </mat-form-field>
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <div id="pitch" class="test">
+      <main style="opacity: 1;" class="">
+        <div class="static">
+          <p
+            style="opacity: 1; display: block; transform: translateX(0px) translateY(0px);"
+            class="js-subheading"
+          ></p>
+        </div>
+
+        <div class="js-stage stage texture">
+          <div
+            style="opacity: 1; transform: translateZ(-200px) translateY(0px);"
+            class="js-world world"
+          >
+            <div class="terrain js-terrain">
+              <div class="field field--alt"></div>
+              <div class="field ground">
+                <div class="field__texture field__texture--gradient"></div>
+                <div class="field__texture field__texture--gradient-b"></div>
+                <div class="field__texture field__texture--grass"></div>
+                <div class="field__line field__line--goal">
+                  {{ hostPlayersForm.value.hostGoalkeeper.surname }}
+                </div>
+                <div
+                  class="field__line field__line--goal field__line--goal--far"
+                ></div>
+                <div class="field__line field__line--outline"></div>
+                <div class="field__line field__line--penalty">
+                  {{ hostPlayersForm.value.hostRightMidDefender.surname }}
+                </div>
+                <div class="defender">
+                  {{ hostPlayersForm.value.hostLeftMidDefender.surname }}
+                </div>
+                <div class="leftDefender">
+                  {{ hostPlayersForm.value.hostLeftDefender.surname }}
+                </div>
+                <div class="rightDefender">
+                  {{ hostPlayersForm.value.hostRightDefender.surname }}
+                </div>
+                <div class="leftWinger">
+                  {{ hostPlayersForm.value.hostLeftWinger.surname }}
+                </div>
+                <div class="rightWinger">
+                  {{ hostPlayersForm.value.hostRightWinger.surname }}
+                </div>
+                <div class="field__line field__line--penalty-arc"></div>
+                <div
+                  class="field__line field__line--penalty-arc field__line--penalty-arc--far"
+                >
+                  {{ hostPlayersForm.value.hostStricker.surname }}
+                </div>
+                <div class="midfielder">
+                  {{ hostPlayersForm.value.hostMidfielder.surname }}
+                </div>
+
+                <div class="rightMidfielder">
+                  {{ hostPlayersForm.value.hostRightMid.surname }}
+                </div>
+                <div class="field__line field__line--mid">
+                  {{ hostPlayersForm.value.hostLeftMid.surname }}
+                </div>
+                <div class="field__line field__line--circle"></div>
+                <div
+                  class="field__line field__line--penalty field__line--penalty--far"
+                ></div>
               </div>
-              <div class="field__texture field__texture--gradient-b"></div>
-              <div class="field__texture field__texture--grass"></div>
-              <div class="field__line field__line--goal">
-                {{ hostGoalkeeper.surname }}
-              </div>
-              <div
-                class="field__line field__line--goal field__line--goal--far"
-              ></div>
-              <div class="field__line field__line--outline"></div>
-              <div class="field__line field__line--penalty"></div>
-              <div class="field__line field__line--penalty-arc"></div>
-              <div
-                class="field__line field__line--penalty-arc field__line--penalty-arc--far"
-              ></div>
-              <div class="field__line field__line--mid">Krychowiak</div>
-              <div class="field__line field__line--circle"></div>
-              <div
-                class="field__line field__line--penalty field__line--penalty--far"
-              ></div>
+              <div class="field__side field__side--front"></div>
+              <div class="field__side field__side--left"></div>
+              <div class="field__side field__side--right"></div>
+              <div class="field__side field__side--back"></div>
             </div>
-            <div class="field__side field__side--front"></div>
-            <div class="field__side field__side--left"></div>
-            <div class="field__side field__side--right"></div>
-            <div class="field__side field__side--back"></div>
           </div>
         </div>
+      </main>
+    </div>
+  </ng-template>
+
+  <ng-template #Away>
+    <div>
+      Gospodarze
+    </div>
+    <div>
+      <div id="hostPlayers" class="hostPlayers">
+        <form [formGroup]="guestPlayersForm">
+          <mat-form-field>
+            <mat-label>Bramkarz</mat-label>
+            <mat-select
+              id="guestGoalkeeper"
+              formControlName="guestGoalkeeper"
+              (selectionChange)="selectHostGoalkeeper($event)"
+              required
+            >
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let player of guestPlayers" [value]="player">
+                {{ player.name }} {{ player.surname }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <p>
+            <mat-form-field>
+              <mat-label>Lewy obrońca</mat-label>
+              <mat-select
+                id="guestLeftDefender"
+                formControlName="guestLeftDefender"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option
+                  *ngFor="let player of guestPlayers"
+                  [value]="player"
+                >
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <mat-label>Środkowy obrnońca </mat-label>
+              <mat-select
+                id="guestLeftMidDefender"
+                formControlName="guestLeftMidDefender"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option
+                  *ngFor="let player of guestPlayers"
+                  [value]="player"
+                >
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <mat-label>Środkowy obrońca</mat-label>
+              <mat-select
+                id="guestRightMidDefender"
+                formControlName="guestRightMidDefender"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option
+                  *ngFor="let player of guestPlayers"
+                  [value]="player"
+                >
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <mat-label>Prawy obrońca</mat-label>
+              <mat-select
+                id="guestRighttDefender"
+                formControlName="guestRightDefender"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option
+                  *ngFor="let player of guestPlayers"
+                  [value]="player"
+                >
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <mat-label>Lewy pomocnik</mat-label>
+              <mat-select
+                id="guestLeftMid"
+                formControlName="guestLeftMid"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option
+                  *ngFor="let player of guestPlayers"
+                  [value]="player"
+                >
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field>
+              <mat-label>Prawy pomocnik</mat-label>
+              <mat-select
+                id="guestRightMid"
+                formControlName="guestRightMid"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option
+                  *ngFor="let player of guestPlayers"
+                  [value]="player"
+                >
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Środkowy pomocnik</mat-label>
+              <mat-select
+                id="guestMidfielder"
+                formControlName="guestMidfielder"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option
+                  *ngFor="let player of guestPlayers"
+                  [value]="player"
+                >
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Lewy skrzydłowy</mat-label>
+              <mat-select
+                id="guestLeftWinger"
+                formControlName="guestLeftWinger"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option
+                  *ngFor="let player of guestPlayers"
+                  [value]="player"
+                >
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Prawy skrzydłowy</mat-label>
+              <mat-select
+                id="guestRightWinger"
+                formControlName="guestRightWinger"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option
+                  *ngFor="let player of guestPlayers"
+                  [value]="player"
+                >
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Środkowy napastnik</mat-label>
+              <mat-select
+                id="guestStricker"
+                formControlName="guestStricker"
+                (selectionChange)="selectHostGoalkeeper($event)"
+                required
+              >
+                <mat-option>--</mat-option>
+                <mat-option
+                  *ngFor="let player of guestPlayers"
+                  [value]="player"
+                >
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+        </form>
       </div>
-    </main>
-  </div>
+    </div>
+
+    <div class="addGoal">
+      <form [formGroup]="hostGoalForm">
+        <button
+          type="button"
+          class="btn btn-success"
+          [disabled]="hostGoalForm.invalid"
+          (click)="addHostGoal()"
+        >
+          Dodaj bramkę
+        </button>
+
+        <div>
+          <p>
+            <mat-form-field>
+              <mat-label>Strzelec bramki</mat-label>
+              <mat-select id="hostScorrer" formControlName="hostScorrer">
+                <mat-option>--</mat-option>
+                <mat-option
+                  *ngFor="let player of guestPlayers"
+                  [value]="player"
+                >
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Asystent</mat-label>
+              <mat-select id="hostAssistant" formControlName="hostAssitant">
+                <mat-option>Brak</mat-option>
+                <mat-option
+                  *ngFor="let player of guestPlayers"
+                  [value]="player"
+                >
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Minuta</mat-label>
+              <input
+                id="hostGoalMinute"
+                formControlName="hostGoalMinute"
+                matInput
+                placeholder="Sędzia"
+              />
+            </mat-form-field>
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <div id="pitch" class="test">
+      <main style="opacity: 1;" class="">
+        <div class="static">
+          <p
+            style="opacity: 1; display: block; transform: translateX(0px) translateY(0px);"
+            class="js-subheading"
+          ></p>
+        </div>
+
+        <div class="js-stage stage texture">
+          <div
+            style="opacity: 1; transform: translateZ(-200px) translateY(0px);"
+            class="js-world world"
+          >
+            <div class="terrain js-terrain">
+              <div class="field field--alt"></div>
+              <div class="field ground">
+                <div class="field__texture field__texture--gradient"></div>
+                <div class="field__texture field__texture--gradient-b"></div>
+                <div class="field__texture field__texture--grass"></div>
+                <div class="field__line field__line--goal">
+                  {{ guestPlayersForm.value.guestGoalkeeper.surname }}
+                </div>
+                <div
+                  class="field__line field__line--goal field__line--goal--far"
+                ></div>
+                <div class="field__line field__line--outline"></div>
+                <div class="field__line field__line--penalty">
+                  {{ guestPlayersForm.value.guestRightMidDefender.surname }}
+                </div>
+                <div class="defender">
+                  {{ guestPlayersForm.value.guestLeftMidDefender.surname }}
+                </div>
+                <div class="leftDefender">
+                  {{ guestPlayersForm.value.guestLeftDefender.surname }}
+                </div>
+                <div class="rightDefender">
+                  {{ guestPlayersForm.value.guestRightDefender.surname }}
+                </div>
+                <div class="leftWinger">
+                  {{ guestPlayersForm.value.guestLeftWinger.surname }}
+                </div>
+                <div class="rightWinger">
+                  {{ guestPlayersForm.value.guestRightWinger.surname }}
+                </div>
+                <div class="field__line field__line--penalty-arc"></div>
+                <div
+                  class="field__line field__line--penalty-arc field__line--penalty-arc--far"
+                >
+                  {{ guestPlayersForm.value.guestStricker.surname }}
+                </div>
+                <div class="midfielder">
+                  {{ guestPlayersForm.value.guestMidfielder.surname }}
+                </div>
+
+                <div class="rightMidfielder">
+                  {{ guestPlayersForm.value.guestRightMid.surname }}
+                </div>
+                <div class="field__line field__line--mid">
+                  {{ guestPlayersForm.value.guestLeftMid.surname }}
+                </div>
+                <div class="field__line field__line--circle"></div>
+                <div
+                  class="field__line field__line--penalty field__line--penalty--far"
+                ></div>
+              </div>
+              <div class="field__side field__side--front"></div>
+              <div class="field__side field__side--left"></div>
+              <div class="field__side field__side--right"></div>
+              <div class="field__side field__side--back"></div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </ng-template>
 </body>

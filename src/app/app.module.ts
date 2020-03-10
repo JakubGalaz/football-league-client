@@ -20,6 +20,7 @@ import { PlayerServiceService } from "./player-service.service";
 import { AddTeamComponent } from "./add-team/add-team.component";
 import { AddProtocolComponent } from "./add-protocol/add-protocol.component";
 import { TeamServiceService } from "./team-service.service";
+import { MatChipsModule } from "@angular/material/chips";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { TeamServiceService } from "./team-service.service";
     FormsModule,
     MatIconModule,
     MatSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    MatChipsModule
   ],
   providers: [PlayerServiceService, TeamServiceService],
   bootstrap: [AppComponent]

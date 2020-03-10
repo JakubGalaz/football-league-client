@@ -323,6 +323,7 @@ main {
   right: 0;
   margin: auto;
 }
+
 .field__line--penalty-arc:after {
   position: absolute;
   top: 75%;
@@ -363,6 +364,80 @@ main {
   border: solid 3px rgba(255, 255, 255, 0.5);
   border-top: none;
 }
+
+.leftDefender {
+  position: absolute;
+  height: 3px;
+  z-index: 5;
+  top: 90%;
+  width: 92%;
+  left: 6%;
+}
+
+.rightDefender {
+  position: absolute;
+  height: 3px;
+  z-index: 5;
+  top: 90%;
+  width: 92%;
+  left: 75%;
+}
+
+.leftWinger {
+  position: absolute;
+  height: 3px;
+  z-index: 5;
+  top: 25%;
+  width: 92%;
+  left: 5%;
+}
+
+.rightWinger {
+  position: absolute;
+  height: 3px;
+  z-index: 5;
+  top: 25%;
+  width: 92%;
+  left: 75%;
+}
+
+.midfielder {
+  position: absolute;
+  height: 3px;
+  z-index: 5;
+  top: 50%;
+  width: 92%;
+  left: 50%;
+}
+
+.myButton {
+  position: absolute;
+  z-index: 12;
+}
+.addGoal {
+  float: left;
+
+  z-index: 115;
+}
+
+.rightMidfielder {
+  position: absolute;
+  height: 3px;
+  z-index: 5;
+  top: 50%;
+  width: 92%;
+  left: 75%;
+}
+
+.defender {
+  position: absolute;
+  height: 3px;
+  z-index: 5;
+  top: 80%;
+  width: 92%;
+  left: 65%;
+}
+
 .field__line--outline {
   width: 92%;
   height: 92%;
