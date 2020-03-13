@@ -11,6 +11,7 @@ import { Player } from "../Player";
 import { Goal } from "../Goal";
 import { PlayerServiceService } from "../player-service.service";
 import { Protocol } from "../Protocol";
+import { PlayerChange } from "../PlayerChange";
 
 @Component({
   selector: "app-add-protocol",
@@ -21,6 +22,8 @@ export class AddProtocolComponent implements OnInit {
   protocolForm: FormGroup;
   hostPlayersForm: FormGroup;
   guestPlayersForm: FormGroup;
+  hostChange: PlayerChange[];
+  guestChange: PlayerChange[];
   Protocol: Protocol;
   allTeams: Team[];
   allPlayers: Player[];
@@ -35,6 +38,8 @@ export class AddProtocolComponent implements OnInit {
   isHome: boolean;
   guestGoalForm: FormGroup;
   hostGoalForm: FormGroup;
+  guestChangeForm: FormGroup;
+  hostChangeForm: FormGroup;
 
   guestGoals: Goal[];
 
@@ -107,6 +112,28 @@ export class AddProtocolComponent implements OnInit {
         Validators.min(1)
       ])
     });
+
+    this.guestChangeForm = new FormGroup({
+      guestPlayer: new FormControl("", [Validators.required]),
+      guestNewPlayer: new FormControl("", [Validators.required]),
+      guestChangeMinute: new FormControl("", [
+        Validators.required,
+        CustomValidator.numeric,
+        Validators.max(90),
+        Validators.min(1)
+      ])
+    });
+
+    this.hostChangeForm = new FormGroup({
+      hostPlayer: new FormControl("", [Validators.required]),
+      hostNewPlayer: new FormControl("", [Validators.required]),
+      hostChangeMinute: new FormControl("", [
+        Validators.required,
+        CustomValidator.numeric,
+        Validators.max(90),
+        Validators.min(1)
+      ])
+    });
   }
 
   getTeams() {
@@ -144,6 +171,8 @@ export class AddProtocolComponent implements OnInit {
     this.guestPlayers = this.allPlayers.filter(
       player => player.club === this.protocolForm.value.guest
     );
+
+    document.getElementById("playersGoalsChange").style.display = "block";
   }
 
   selectHostGoalkeeper($event) {}
@@ -189,14 +218,62 @@ export class AddProtocolComponent implements OnInit {
     this.isHome = !this.isHome;
   }
 
+  hostPlayerChange() {
+    const change: PlayerChange = {
+      oldPlayer: this.hostChangeForm.value.hostPlayer,
+      newPlayer: this.hostChangeForm.value.hostNewPlayer,
+      minute: this.hostChangeForm.value.hostChangeMinute
+    };
+
+    if (this.hostChange === undefined) {
+      this.hostChange = [change];
+    } else if (this.hostChange.length < 2) {
+      this.hostChange.push(change);
+    } else {
+      this.hostChange.push(change);
+      document.getElementById("hostPlayerChangeButton").style.display = "none";
+      document.getElementById("hostPlayerChangeInfo").style.display = "block";
+    }
+    this.hostChangeForm.reset();
+    this.guestChangeForm.reset();
+  }
+
+  guestPlayerChange() {
+    const change: PlayerChange = {
+      oldPlayer: this.guestChangeForm.value.guestPlayer,
+      newPlayer: this.guestChangeForm.value.guestNewPlayer,
+      minute: this.guestChangeForm.value.guestChangeMinute
+    };
+
+    if (this.guestChange === undefined) {
+      this.guestChange = [change];
+    } else if (this.guestChange.length < 2) {
+      this.guestChange.push(change);
+    } else {
+      this.guestChange.push(change);
+      document.getElementById("guestPlayerChangeButton").style.display = "none";
+      document.getElementById("guestPlayerChangeInfo").style.display = "block";
+    }
+    this.guestChangeForm.reset();
+  }
+
   createProtocol() {
+    this.hostPlayers = this.hostPlayersForm.value;
+    this.guestPlayers = this.guestPlayersForm.value;
     this.Protocol = {
-      host: this.protocolForm.value.host,
-      guest: this.protocolForm.value.guest,
+      guest: this.protocolForm.value.host, //tu na odwrot blad w impementacji do poprawy ,, ale dziala
+      host: this.protocolForm.value.guest,
       refree: this.protocolForm.value.refree,
       guestGoals: this.guestGoals,
-      hostGoals: this.hostGoals
+      hostGoals: this.hostGoals,
+      // guestPlayers: this.hostPlayers,
+      // hostPlayers: this.guestPlayers,
+      guestChange: this.guestChange,
+      hostChange: this.hostChange,
+      comments: this.comments
     };
+
+    console.log("protokół: ");
 
     console.log(this.Protocol);
   }

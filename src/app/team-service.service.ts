@@ -16,4 +16,8 @@ export class TeamServiceService {
   postTeam(team: Team): Observable<Team> {
     return this.http.post("http://localhost:8081/saveTeam", team);
   }
+
+  deleteTeamById(id: string): Observable<Team> {
+    return this.http.delete("http://localhost:8081/" + id);
+  }
 }

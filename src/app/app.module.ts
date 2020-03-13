@@ -21,13 +21,18 @@ import { AddTeamComponent } from "./add-team/add-team.component";
 import { AddProtocolComponent } from "./add-protocol/add-protocol.component";
 import { TeamServiceService } from "./team-service.service";
 import { MatChipsModule } from "@angular/material/chips";
+import { DeletePlayerComponent } from "./delete-player/delete-player.component";
+import { DeleteTeamComponent } from "./delete-team/delete-team.component";
+import { MatTableModule } from "@angular/material/table";
 
 @NgModule({
   declarations: [
     AppComponent,
     AddPlayerComponent,
     AddTeamComponent,
-    AddProtocolComponent
+    AddProtocolComponent,
+    DeletePlayerComponent,
+    DeleteTeamComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,8 @@ import { MatChipsModule } from "@angular/material/chips";
     MatIconModule,
     MatSelectModule,
     HttpClientModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTableModule
   ],
   providers: [PlayerServiceService, TeamServiceService],
   bootstrap: [AppComponent]
