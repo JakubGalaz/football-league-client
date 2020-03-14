@@ -24,6 +24,10 @@ import { MatChipsModule } from "@angular/material/chips";
 import { DeletePlayerComponent } from "./delete-player/delete-player.component";
 import { DeleteTeamComponent } from "./delete-team/delete-team.component";
 import { MatTableModule } from "@angular/material/table";
+import { DeleteSuccessComponent } from './delete-success/delete-success.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,9 @@ import { MatTableModule } from "@angular/material/table";
     AddTeamComponent,
     AddProtocolComponent,
     DeletePlayerComponent,
-    DeleteTeamComponent
+    DeleteTeamComponent,
+    DeleteSuccessComponent,
+    WelcomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +57,9 @@ import { MatTableModule } from "@angular/material/table";
     MatSelectModule,
     HttpClientModule,
     MatChipsModule,
-    MatTableModule
+    MatTableModule,
+    NgbModule,
+    MatSortModule
   ],
   providers: [PlayerServiceService, TeamServiceService],
   bootstrap: [AppComponent]

@@ -1,0 +1,32 @@
+
+<body>
+<ngb-carousel *ngIf="images" class="carousel">
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[0]" alt="Random first slide">
+    </div>
+    <div class="carousel-caption">
+      <h3>Najświeższe newsy i informacje</h3>
+      <p>Tylko u nas znajdziesz wszystkie fakty dotyczące ligi</p>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[1]" alt="Random second slide">
+    </div>
+    <div class="carousel-caption">
+      <h3>Podgląd statystyk</h3>
+      <p>W naszym serwisie znajdziesz indywidualne statystyki drużyn i zawodników.</p>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[2]" alt="Random third slide">
+    </div>
+    <div class="carousel-caption">
+      <h3>Tabela ligi</h3>
+      <p>Aktualna tabela całej naszej ligi.</p>
+    </div>
+  </ng-template>
+</ngb-carousel>
+</body>

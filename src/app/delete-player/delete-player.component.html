@@ -1,1 +1,80 @@
-<p>delete-player works!</p>
+<body>
+
+<div class="searchBar">
+<form [formGroup]="surnameForm">
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <button (click)="footballerSurname()" class="btn btn-dark" type="button">Wyszukaj piłkarza po nazwisku</button>
+  </div>
+  <input formControlName="surname" type="text" class="form-control" placeholder="Nazwisko" aria-label="" aria-describedby="basic-addon1">
+</div>
+  </form>
+<button (click)="showAllFootballer()" type="button" class="btn btn-dark ">Pokaż wszystkich piłkarzy</button>
+</div>
+
+<div id="searchedSurname" >
+  <div *ngIf="isSearched === true; then notSelected"></div>
+  <div *ngIf="isSearched === false; then Selected"></div>
+</div>
+
+
+<ng-template #Selected>
+<table matSort (matSortChange)="sortData($event) " class="table table-dark">
+  <tr>
+    <th mat-sort-header="name">Imię</th>
+    <th mat-sort-header="surname">Nazwisko</th>
+    <th mat-sort-header="age">Wiek</th>
+    <th mat-sort-header="club">Klub</th>
+    <th mat-sort-header="position">Pozycja</th>
+
+  </tr>
+
+  <tr *ngFor="let player of sortedData" >
+
+    <ng-container  *ngIf="surnameForm.value.surname === player.surname" >
+    <td>{{player.name}}</td>
+    <td>{{player.surname}}</td>
+    <td>{{player.age}}</td>
+    <td>{{player.club}}</td>
+    <td>{{player.position}}</td>
+    <button type="button" class="btn btn-dark" (click)="deletePlayerById(player.id)">Usuń piłkarza</button>
+    </ng-container>
+
+  </tr>
+</table>
+
+</ng-template>
+
+<ng-template #notSelected>
+  <table matSort (matSortChange)="sortData($event)" class="table table-dark">
+    <tr>
+      <th mat-sort-header="name">Imię</th>
+      <th mat-sort-header="surname">Nazwisko</th>
+      <th mat-sort-header="age">Wiek</th>
+      <th mat-sort-header="club">Klub</th>
+      <th mat-sort-header="position">Pozycja</th>
+
+    </tr>
+
+    <tr *ngFor="let player of sortedData" >
+
+
+        <td>{{player.name}}</td>
+        <td>{{player.surname}}</td>
+        <td>{{player.age}}</td>
+        <td>{{player.club}}</td>
+        <td>{{player.position}}</td>
+        <button type="button" class="btn btn-dark" (click)="deletePlayerById(player.id)">Usuń piłkarza</button>
+
+
+    </tr>
+  </table>
+
+</ng-template>
+
+</body>
+
+
+
+
+

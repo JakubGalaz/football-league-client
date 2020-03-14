@@ -18,6 +18,9 @@ export class TeamServiceService {
   }
 
   deleteTeamById(id: string): Observable<Team> {
-    return this.http.delete("http://localhost:8081/" + id);
+    return this.http.delete("http://localhost:8081/delete/" + id);
   }
+
+
+
 }

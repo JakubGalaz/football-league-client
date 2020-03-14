@@ -8,11 +8,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let team of allTeams">
+    <tr *ngFor="let team of allTeams" >
       <th scope="row">1</th>
       <td>{{ team.name }}</td>
       <td>{{ team.stadium }}</td>
-      <td><button class="btn btn-light">Usuń</button></td>
+      <td><button routerLink="success" class="btn btn-light" (click)="deleteTeamByID(team.id) ">Usuń</button></td>
     </tr>
   </tbody>
 </table>
