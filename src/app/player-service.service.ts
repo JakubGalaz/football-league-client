@@ -25,6 +25,6 @@ export class PlayerServiceService {
   }
 
   findPlayerById(id: string): Observable<Player>{
-    return this.http.get("http://localhost:8081/findPlayerById/" + id);
+    return this.http.get("http://localhost:8081/showPlayerById/" + id);
   }
 }

@@ -28,6 +28,9 @@ import { DeleteSuccessComponent } from './delete-success/delete-success.componen
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import {MatSortModule} from '@angular/material/sort';
+import { DeleteProtocolComponent } from './delete-protocol/delete-protocol.component';
+import {ProtocolServiceService} from "./protocol-service.service";
+import { PlayerComponent } from './player/player.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import {MatSortModule} from '@angular/material/sort';
     DeletePlayerComponent,
     DeleteTeamComponent,
     DeleteSuccessComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    DeleteProtocolComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +66,7 @@ import {MatSortModule} from '@angular/material/sort';
     NgbModule,
     MatSortModule
   ],
-  providers: [PlayerServiceService, TeamServiceService],
+  providers: [PlayerServiceService, TeamServiceService, ProtocolServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

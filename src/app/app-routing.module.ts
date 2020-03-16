@@ -8,6 +8,8 @@ import { DeleteSuccessComponent } from "./delete-success/delete-success.componen
 
 import {WelcomePageComponent} from "./welcome-page/welcome-page.component";
 import {DeletePlayerComponent} from "./delete-player/delete-player.component";
+import {DeleteProtocolComponent} from "./delete-protocol/delete-protocol.component";
+import {PlayerComponent} from "./player/player.component";
 
 
 const routes: Routes = [
@@ -38,7 +40,16 @@ const routes: Routes = [
   {
     path: "deletePlayer",
     component: DeletePlayerComponent
-  }
+  },
+  {
+    path: "deleteProtocol",
+    component: DeleteProtocolComponent
+  },
+  {
+    path: "player",
+    component: PlayerComponent
+  },
+
 ];
 
 @NgModule({

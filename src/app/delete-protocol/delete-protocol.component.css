@@ -1,0 +1,12 @@
+body{
+  background-image: url( "../../assets/backgraund.jpg");
+}
+
+input{
+
+  filter: alpha(opacity=50);
+}
+
+.searchBar{
+  padding: 1%;
+}
