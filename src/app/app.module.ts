@@ -24,13 +24,18 @@ import { MatChipsModule } from "@angular/material/chips";
 import { DeletePlayerComponent } from "./delete-player/delete-player.component";
 import { DeleteTeamComponent } from "./delete-team/delete-team.component";
 import { MatTableModule } from "@angular/material/table";
-import { DeleteSuccessComponent } from './delete-success/delete-success.component';
+import { DeleteSuccessComponent } from './delete-team/delete-success/delete-success.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
-import {MatSortModule} from '@angular/material/sort';
+import { MatSortModule} from '@angular/material/sort';
 import { DeleteProtocolComponent } from './delete-protocol/delete-protocol.component';
 import {ProtocolServiceService} from "./protocol-service.service";
 import { PlayerComponent } from './player/player.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from "@angular/material/core";
+import { AddPlayerSuccessComponent } from './add-player/add-player-success/add-player-success.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +48,9 @@ import { PlayerComponent } from './player/player.component';
     DeleteSuccessComponent,
     WelcomePageComponent,
     DeleteProtocolComponent,
-    PlayerComponent
+    PlayerComponent,
+    AddPlayerSuccessComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +71,9 @@ import { PlayerComponent } from './player/player.component';
     MatChipsModule,
     MatTableModule,
     NgbModule,
-    MatSortModule
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [PlayerServiceService, TeamServiceService, ProtocolServiceService],
   bootstrap: [AppComponent]

@@ -15,7 +15,6 @@ export class PlayerServiceService {
   }
 
   postPlayer(player: Player): Observable<Player> {
-    console.log(player);
     return this.http.post("http://localhost:8081/savePlayer", player);
   }
 

@@ -1,29 +1,29 @@
 <body>
   <nav class="navbar navbar-dark bg-dark">
     <div>
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="/welcomePage">Liga</a>
       <button class="btn btn-dark" mat-button [matMenuTriggerFor]="aboveMenu">
-        Above
+        Drużyna
       </button>
       <mat-menu #aboveMenu="matMenu" yPosition="above">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
+        <button mat-menu-item routerLink="addTeam">Dodaj drużynę </button>
+        <button mat-menu-item  routerLink="deleteTeam">Usuń drużunę</button>
       </mat-menu>
 
       <button class="btn btn-dark" mat-button [matMenuTriggerFor]="belowMenu">
-        Below
+        Zawodnik
       </button>
       <mat-menu #belowMenu="matMenu" yPosition="below">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
+        <button mat-menu-item>Dodaj zawodnika</button>
+        <button mat-menu-item>Usuń zawodnika</button>
       </mat-menu>
 
       <button class="btn btn-dark" mat-button [matMenuTriggerFor]="beforeMenu">
-        Before
+        Protokół
       </button>
       <mat-menu #beforeMenu="matMenu" xPosition="before">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
+        <button mat-menu-item>Dodaj protokół</button>
+        <button mat-menu-item>Usuń protokół</button>
       </mat-menu>
 
       <button class="btn btn-dark" mat-button [matMenuTriggerFor]="afterMenu">

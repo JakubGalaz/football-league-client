@@ -1,0 +1,9 @@
+body{
+
+  background-image: url( "../../assets/backgraund.jpg");
+}
+
+img{
+  margin:0 auto;
+  display:block;
+}

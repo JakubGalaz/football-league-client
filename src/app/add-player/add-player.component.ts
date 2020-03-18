@@ -53,7 +53,7 @@ export class AddPlayerComponent implements OnInit {
       club: new FormControl(null, [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(15)
+        Validators.maxLength(30)
       ]),
 
       position: new FormControl(null, Validators.required)
@@ -80,6 +80,10 @@ export class AddPlayerComponent implements OnInit {
 
     this.playerService.postPlayer(this.message).subscribe(player => {
       console.log("Wysłano player: " + player);
+    },
+      err => {
+      console.log(err);
+
     });
   }
 }

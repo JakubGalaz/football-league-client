@@ -1,4 +1,6 @@
-<form [formGroup]="teamForm">
+<body>
+<div class="teamForm">
+<form [formGroup]="teamForm" class="team">
   <div>
     <p>
       <mat-form-field appearance="outline">
@@ -56,9 +58,12 @@
       Uzupełnij skład
     </button>
   </div>
+
 </form>
+
+  <p></p>
 <div id="addPlayers" style="display:none">
-  <table>
+  <table  matSort (matSortChange)="sortData($event)" class="table-dark rounded">
     <tr>
       <th mat-sort-header="name">Imię</th>
       <th mat-sort-header="surname">Nazwisko</th>
@@ -73,9 +78,16 @@
       <td>{{ player.position }}</td>
     </tr>
   </table>
-
+  <p></p>
+  <div class="team">
   <div>Czy napewno chcesz dodać drużyne?</div>
-  <button type="button" class="btn btn-success" (click)="onSumbit()">
-    Dodaj
-  </button>
+    <p></p>
+    <button type="button" class="btn btn-success" (click)="onSumbit()">
+      Dodaj
+    </button>
+  </div>
+
+
 </div>
+</div>
+</body>

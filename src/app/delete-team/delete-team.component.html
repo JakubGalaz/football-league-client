@@ -1,4 +1,7 @@
-<table class="table table-dark">
+
+<body>
+<div class="myTable">
+<table class="table table-dark rounded">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -8,11 +11,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let team of allTeams" >
-      <th scope="row">1</th>
+    <tr *ngFor="let team of allTeams; let indexOfTeams=index" >
+      <th scope="row">{{indexOfTeams+1}}</th>
       <td>{{ team.name }}</td>
       <td>{{ team.stadium }}</td>
       <td><button routerLink="success" class="btn btn-light" (click)="deleteTeamByID(team.id) ">Usuń</button></td>
     </tr>
   </tbody>
 </table>
+</div>
+</body>

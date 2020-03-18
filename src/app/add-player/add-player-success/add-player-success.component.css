@@ -1,0 +1,18 @@
+body{
+  background-image: url( "../../../assets/backgraund.jpg");
+}
+
+.displayInfo{
+  padding: 3%;
+}
+
+
+
+.info{
+  font-size: larger;
+  display: inline;
+  border-radius: 10px;
+  background: snow;
+  padding: 20px;
+
+}

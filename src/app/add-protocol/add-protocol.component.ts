@@ -266,8 +266,6 @@ export class AddProtocolComponent implements OnInit {
       refree: this.protocolForm.value.refree,
       guestGoals: this.guestGoals,
       hostGoals: this.hostGoals,
-      // guestPlayers: this.hostPlayers,
-      // hostPlayers: this.guestPlayers,
       guestChange: this.guestChange,
       hostChange: this.hostChange,
       comments: this.comments
