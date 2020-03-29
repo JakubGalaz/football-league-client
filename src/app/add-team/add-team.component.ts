@@ -5,6 +5,7 @@ import { Player } from "../Player";
 import { Sort } from "@angular/material/sort";
 import { Team } from "../Team";
 import {TeamServiceService} from "../team-service.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-add-team",
@@ -17,11 +18,13 @@ export class AddTeamComponent implements OnInit {
   selectedPlayers: Player[];
   displayInput: false;
   sortedData: Player[];
+  seconds: number;
 
-  constructor(private playerService: PlayerServiceService, private teamService: TeamServiceService) {}
+  constructor(private playerService: PlayerServiceService, private teamService: TeamServiceService, private router: Router) {}
 
   ngOnInit(): void {
     this.getPlayers();
+    this.seconds = 5;
 
 
 
@@ -98,6 +101,8 @@ export class AddTeamComponent implements OnInit {
       players: this.selectedPlayers
     };
 
+    console.log(team);
+
     this.teamService.postTeam(team).subscribe( myTeam => {
       console.log("Wysłaon: " + myTeam);
       },
@@ -105,7 +110,15 @@ export class AddTeamComponent implements OnInit {
         console.log(err);
 
       });
+
+     document.getElementById("spinner").style.display="inline-block"
+
+    setTimeout(() => {
+      this.router.navigate(['/welcomePage']);
+    }, 5000);
   }
+
+
 }
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {

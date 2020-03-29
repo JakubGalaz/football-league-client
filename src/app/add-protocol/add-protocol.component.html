@@ -1,17 +1,15 @@
-<body>
-  <div>
-    Mecz:
-    {{ protocolForm.value.host + " " }} vs {{ " " + protocolForm.value.guest }}
-  </div>
-  <div>
-    Sędzia: {{protocolForm.value.refree}}
-  </div>
-  <div>
-    Wynik
 
-  </div>
-  <p></p>
+
+
+<body>
+
+
+<div id="basicInfo" >
+
+  <div class="basicInfo">
   <form [formGroup]="protocolForm">
+    <p></p>
+
     <div class="myForm">
       <p>
         <mat-form-field appearance="outline">
@@ -34,7 +32,7 @@
       </p>
       <p>
         <mat-form-field>
-          <mat-label>Gość</mat-label>
+          <mat-label>Gospodarz</mat-label>
           <mat-select
             id="host"
             formControlName="host"
@@ -49,7 +47,7 @@
 
       <p>
         <mat-form-field>
-          <mat-label>Gospodarz</mat-label>
+          <mat-label>Gość</mat-label>
           <mat-select id="guest" formControlName="guest">
             <mat-option *ngFor="let team of aviableTeams" [value]="team.name">
               {{ team.name }}
@@ -61,15 +59,35 @@
       <div>
         <mat-form-field>
           <mat-label>Choose a date</mat-label>
-          <input matInput [matDatepicker]="picker">
+          <input matInput
+                 formControlName="matchDate"
+                 [min] = "minDate"
+                 [max] = "maxDate"
+                 [matDatepicker]="picker"
+                 required
+>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-
       </div>
 
 
+
+      <mat-form-field [style.fontSize]="16">
+        <mat-label>Dodatkowy komentarz</mat-label>
+        <textarea matInput
+                  cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"></textarea>
+      </mat-form-field>
+    </div>
+
+
+
+    <div >
       <button
+        id="addPlayer"
         type="button"
         (click)="addPlayers()"
         [disabled]="protocolForm.invalid"
@@ -77,35 +95,46 @@
       >
         Uzupełnij skład
       </button>
-      <p></p>
-      <div>
-        <button (click)="homeOrAway()" type="button" class="btn btn-info">
-          Goście/Gospodarze
-        </button>
-      </div>
-      <div>
-        <button
-          (click)="createProtocol()"
-          type="button"
-          class="btn btn-info"
-          [disabled]="hostPlayersForm.invalid || guestPlayersForm.invalid"
-        >
-          Dodaj Protokół
-        </button>
-      </div>
     </div>
+
   </form>
 
 
-
-  <div id="playersGoalsChange" style="display: none;">
-    <div *ngIf="isHome === true; then Home"></div>
-    <div *ngIf="isHome === false; then Away"></div>
+  <div class="absolute" >
+    <button id="homeAway"(click)="homeOrAway()" type="button" class="btn btn-info">
+      Goście/Gospodarze
+    </button>
   </div>
 
+  <div>
+    <button
+      (click)="createProtocol()"
+      type="button"
+      class="btn btn-info "
+      [disabled]="hostPlayersForm.invalid || guestPlayersForm.invalid"
+    >
+      Dodaj Protokół
+    </button>
+  </div>
+  </div>
+</div>
+
+
+        <div id="playersGoalsChange" style="display: none;" class="homeAway">
+          <div *ngIf="isHome === true; then Home"></div>
+          <div *ngIf="isHome === false; then Away"></div>
+        </div>
+
+
+
+
+
+
   <ng-template #Home>
+
+    <div class="teamData">
     <div>
-      Goście
+      Gospodarze
     </div>
     <div>
       <div id="hostPlayers" class="hostPlayers">
@@ -295,12 +324,12 @@
     </div>
 
     <div class="addGoal">
-      <form [formGroup]="guestGoalForm">
+      <form [formGroup]="hostGoalForm">
         <button
           type="button"
           class="btn btn-success"
-          [disabled]="guestGoalForm.invalid"
-          (click)="addGuestGoal()"
+          [disabled]="hostGoalForm.invalid"
+          (click)="addHostGoal()"
         >
           Dodaj bramkę
         </button>
@@ -309,7 +338,7 @@
           <p>
             <mat-form-field>
               <mat-label>Strzelec bramki</mat-label>
-              <mat-select id="guestStrticker" formControlName="guestStricker">
+              <mat-select id="hostScorrer" formControlName="hostScorrer">
                 <mat-option>--</mat-option>
                 <mat-option *ngFor="let player of hostPlayers" [value]="player">
                   {{ player.name }} {{ player.surname }}
@@ -320,7 +349,7 @@
           <p>
             <mat-form-field>
               <mat-label>Asystent</mat-label>
-              <mat-select id="guestAssistant" formControlName="guestAssitant">
+              <mat-select id="hostAssistant" formControlName="hostAssitant">
                 <mat-option>Brak</mat-option>
                 <mat-option *ngFor="let player of hostPlayers" [value]="player">
                   {{ player.name }} {{ player.surname }}
@@ -332,8 +361,8 @@
             <mat-form-field appearance="outline">
               <mat-label>Minuta</mat-label>
               <input
-                id="guestGoalMinute"
-                formControlName="guestGoalMinute"
+                id="hostGoalMinute"
+                formControlName="hostGoalMinute"
                 matInput
                 placeholder="Sędzia"
               />
@@ -343,16 +372,16 @@
       </form>
 
       <div>
-        <form [formGroup]="guestChangeForm">
-          <div id="guestPlayerChangeInfo" style="display: none;">
+        <form [formGroup]="hostChangeForm">
+          <div id="hostPlayerChangeInfo" style="display: none;">
             Wykorzystano limit zmian!
           </div>
           <button
             type="button"
             class="btn btn-success"
-            id="guestPlayerChangeButton"
-            [disabled]="guestChangeForm.invalid"
-            (click)="guestPlayerChange()"
+            id="hostPlayerChangeButton"
+            [disabled]="hostChangeForm.invalid"
+            (click)="hostPlayerChange()"
           >
             Dodaj Zmianę
           </button>
@@ -361,7 +390,7 @@
             <p>
               <mat-form-field>
                 <mat-label>Zawodnik schodzący</mat-label>
-                <mat-select id="guestPlayer" formControlName="guestPlayer">
+                <mat-select id="hostPlayer" formControlName="hostPlayer">
                   <mat-option>--</mat-option>
                   <mat-option
                     *ngFor="let player of hostPlayers"
@@ -376,8 +405,8 @@
               <mat-form-field>
                 <mat-label>Zmiennik</mat-label>
                 <mat-select
-                  id="guestNewPlayer"
-                  formControlName="guestNewPlayer"
+                  id="hostNewPlayer"
+                  formControlName="hostNewPlayer"
                 >
                   <mat-option>Brak</mat-option>
                   <mat-option
@@ -393,8 +422,8 @@
               <mat-form-field appearance="outline">
                 <mat-label>Minuta</mat-label>
                 <input
-                  id="guestChangeMinute"
-                  formControlName="guestChangeMinute"
+                  id="hostChangeMinute"
+                  formControlName="hostChangeMinute"
                   matInput
                   placeholder="Minuta"
                 />
@@ -403,6 +432,64 @@
           </div>
         </form>
       </div>
+    </div>
+
+      <div>
+        <form [formGroup]="hostCardForm">
+          <button
+            type="button"
+            class="btn btn-success"
+            id="hostCards"
+            [disabled]="hostCardForm.invalid"
+            (click)="addHostCard()"
+          >
+            Dodaj Karę
+          </button>
+
+          <div>
+            <p>
+              <mat-form-field>
+                <mat-label>Zawodnik</mat-label>
+                <mat-select id="hostCardPlayer" formControlName="player">
+                  <mat-option>--</mat-option>
+                  <mat-option
+                    *ngFor="let player of hostPlayers"
+                    [value]="player"
+                  >
+                    {{ player.name }} {{ player.surname }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+
+            <p>
+            </p>
+
+
+
+            <h4>Kartka</h4>
+            <select id="cards" formControlName="card">
+              <option value="czerwona">czerwona</option>
+              <option value="żółta">żółta</option>
+            </select>
+
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Minuta</mat-label>
+                <input
+                  id="hostCardMinute"
+                  formControlName="minute"
+                  matInput
+                  placeholder="Minuta"
+                />
+              </mat-form-field>
+            </p>
+          </div>
+        </form>
+      </div>
+
+
+
     </div>
 
     <div id="pitch" class="test">
@@ -483,11 +570,12 @@
   </ng-template>
 
   <ng-template #Away>
-    <div>
-      Gospodarze
+    <div class="teamData">
+    <div >
+      Goście
     </div>
     <div>
-      <div id="hostPlayers" class="hostPlayers">
+      <div id="guestPlayers" class="guestPlayers">
         <form [formGroup]="guestPlayersForm">
           <mat-form-field>
             <mat-label>Bramkarz</mat-label>
@@ -704,12 +792,12 @@
     </div>
 
     <div class="addGoal">
-      <form [formGroup]="hostGoalForm">
+      <form [formGroup]="guestGoalForm">
         <button
           type="button"
           class="btn btn-success"
-          [disabled]="hostGoalForm.invalid"
-          (click)="addHostGoal()"
+          [disabled]="guestGoalForm.invalid"
+          (click)="addGuestGoal()"
         >
           Dodaj bramkę
         </button>
@@ -718,7 +806,7 @@
           <p>
             <mat-form-field>
               <mat-label>Strzelec bramki</mat-label>
-              <mat-select id="hostScorrer" formControlName="hostScorrer">
+              <mat-select id="guestScorrer" formControlName="guestScorrer">
                 <mat-option>--</mat-option>
                 <mat-option
                   *ngFor="let player of guestPlayers"
@@ -732,7 +820,7 @@
           <p>
             <mat-form-field>
               <mat-label>Asystent</mat-label>
-              <mat-select id="hostAssistant" formControlName="hostAssitant">
+              <mat-select id="guestAssistant" formControlName="guestAssitant">
                 <mat-option>Brak</mat-option>
                 <mat-option
                   *ngFor="let player of guestPlayers"
@@ -747,8 +835,8 @@
             <mat-form-field appearance="outline">
               <mat-label>Minuta</mat-label>
               <input
-                id="hostGoalMinute"
-                formControlName="hostGoalMinute"
+                id="guestGoalMinute"
+                formControlName="guestGoalMinute"
                 matInput
                 placeholder="Sędzia"
               />
@@ -757,16 +845,16 @@
         </div>
       </form>
 
-      <form [formGroup]="hostChangeForm">
-        <div id="hostPlayerChangeInfo" style="display: none;">
+      <form [formGroup]="guestChangeForm">
+        <div id="guestPlayerChangeInfo" style="display: none;">
           Wykorzystano limit zmian!
         </div>
         <button
           type="button"
           class="btn btn-success"
-          id="hostPlayerChangeButton"
-          [disabled]="hostChangeForm.invalid"
-          (click)="hostPlayerChange()"
+          id="guestPlayerChangeButton"
+          [disabled]="guestChangeForm.invalid"
+          (click)="guestPlayerChange()"
         >
           Dodaj Zmianę
         </button>
@@ -775,7 +863,7 @@
           <p>
             <mat-form-field>
               <mat-label>Zawodnik schodzący</mat-label>
-              <mat-select id="hostPlayer" formControlName="hostPlayer">
+              <mat-select id="guestPlayer" formControlName="guestPlayer">
                 <mat-option>--</mat-option>
                 <mat-option
                   *ngFor="let player of guestPlayers"
@@ -789,7 +877,7 @@
           <p>
             <mat-form-field>
               <mat-label>Zmiennik</mat-label>
-              <mat-select id="hostNewPlayer" formControlName="hostNewPlayer">
+              <mat-select id="guestNewPlayer" formControlName="guestNewPlayer">
                 <mat-option>Brak</mat-option>
                 <mat-option
                   *ngFor="let player of guestPlayers"
@@ -804,8 +892,8 @@
             <mat-form-field appearance="outline">
               <mat-label>Minuta</mat-label>
               <input
-                id="hostChangeMinute"
-                formControlName="hostChangeMinute"
+                id="guestChangeMinute"
+                formControlName="guestChangeMinute"
                 matInput
                 placeholder="Minuta"
               />
@@ -815,7 +903,63 @@
       </form>
     </div>
 
-    <div id="pitch" class="test">
+<div>
+      <form [formGroup]="guestCardForm">
+        <button
+          type="button"
+          class="btn btn-success"
+          id="guestCard"
+          [disabled]="guestCardForm.invalid"
+          (click)="addGuestCard()"
+        >
+          Dodaj Karę
+        </button>
+
+        <div>
+          <p>
+            <mat-form-field>
+              <mat-label>Zawodnik</mat-label>
+              <mat-select id="guestCardPlayer" formControlName="player">
+                <mat-option>--</mat-option>
+                <mat-option
+                  *ngFor="let player of guestPlayers"
+                  [value]="player"
+                >
+                  {{ player.name }} {{ player.surname }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p>
+          </p>
+
+
+
+          <h4>Kartka</h4>
+          <select id="cars"  formControlName="card">
+            <option value="czerwona">czerwona</option>
+            <option value="żółta">żółta</option>
+          </select>
+
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Minuta</mat-label>
+              <input
+                id="guestCardMinute"
+                formControlName="minute"
+                matInput
+                placeholder="Minuta"
+              />
+            </mat-form-field>
+          </p>
+        </div>
+      </form>
+    </div>
+
+    </div>
+
+    <div id="guestPitch" class="test">
       <main style="opacity: 1;" class="">
         <div class="static">
           <p
@@ -891,4 +1035,9 @@
       </main>
     </div>
   </ng-template>
+
+
+
+
 </body>
+

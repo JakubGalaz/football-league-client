@@ -5,16 +5,54 @@
   box-sizing: border-box;
 }
 
+button{
+  display: block;
+  z-index: 9999;
+}
 
+
+.basicInfo
+{
+  display: inline-block;
+position: absolute;
+
+}
+
+.homeAway{
+  display: inline-block;
+  margin-left: 200px;
+}
+.teamData{
+  padding: 2%;
+  display: inline-block;
+  position: absolute;
+  z-index: 4;
+}
+
+.test {
+  display: inline-block;
+  overflow: hidden;
+  float: left;
+  height: 500px;
+  z-index: 0;
+  font-size: 120%;
+
+}
+
+.myButton
+{
+display: block;
+}
+
+.hostPlayers{
+  display: inline-block;
+}
 
 .myForm {
   z-index: 100;
   float: left;
 }
 
-.hostPlayers {
-  float: left;
-}
 
 html,
 body {
@@ -34,13 +72,7 @@ body {
 main {
   opacity: 0;
 }
-.test {
-  overflow: hidden;
-  height: 500px;
-  z-index: 0;
-  float: left;
-  font-size: 120%;
-}
+
 .static {
   top: 0;
   left: 0;

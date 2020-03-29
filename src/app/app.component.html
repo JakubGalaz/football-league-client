@@ -14,16 +14,16 @@
         Zawodnik
       </button>
       <mat-menu #belowMenu="matMenu" yPosition="below">
-        <button mat-menu-item>Dodaj zawodnika</button>
-        <button mat-menu-item>Usuń zawodnika</button>
+        <button mat-menu-item routerLink="addPlayer">Dodaj zawodnika</button>
+        <button mat-menu-item routerLink="deletePlayer">Usuń zawodnika</button>
       </mat-menu>
 
       <button class="btn btn-dark" mat-button [matMenuTriggerFor]="beforeMenu">
         Protokół
       </button>
       <mat-menu #beforeMenu="matMenu" xPosition="before">
-        <button mat-menu-item>Dodaj protokół</button>
-        <button mat-menu-item>Usuń protokół</button>
+        <button mat-menu-item routerLink="addProtocol">Dodaj protokół</button>
+        <button mat-menu-item routerLink="deleteProtocol">Usuń protokół</button>
       </mat-menu>
 
       <button class="btn btn-dark" mat-button [matMenuTriggerFor]="afterMenu">

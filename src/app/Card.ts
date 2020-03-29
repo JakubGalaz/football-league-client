@@ -1,10 +1,10 @@
 import { Player } from "./Player";
 
-export class Goal {
+export class Card {
   constructor(
     public _id?: { $oid: string },
-    public scorrer?: Player,
-    public assistant?: Player,
+    public card?: string,
+    public player?: Player,
     public minute?: number
   ) {}
 }

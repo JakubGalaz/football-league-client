@@ -1,22 +1,26 @@
-import { Component, OnInit } from "@angular/core";
-import { TeamServiceService } from "../team-service.service";
+import { Component, OnInit } from '@angular/core';
+import { TeamServiceService } from '../team-service.service';
 import {
   FormGroup,
   FormControl,
   Validators,
-  AbstractControl
-} from "@angular/forms";
-import { Team } from "../Team";
-import { Player } from "../Player";
-import { Goal } from "../Goal";
-import { PlayerServiceService } from "../player-service.service";
-import { Protocol } from "../Protocol";
-import { PlayerChange } from "../PlayerChange";
+  AbstractControl, FormBuilder
+} from '@angular/forms';
+import { Team } from '../Team';
+import { Player } from '../Player';
+import { Goal } from '../Goal';
+import { PlayerServiceService } from '../player-service.service';
+import { Protocol } from '../Protocol';
+import { PlayerChange } from '../PlayerChange';
+import {DatePipe} from '@angular/common';
+import {ProtocolServiceService} from '../protocol-service.service';
+import {Card} from '../Card';
+
 
 @Component({
-  selector: "app-add-protocol",
-  templateUrl: "./add-protocol.component.html",
-  styleUrls: ["./add-protocol.component.css"]
+  selector: 'app-add-protocol',
+  templateUrl: './add-protocol.component.html',
+  styleUrls: ['./add-protocol.component.css']
 })
 export class AddProtocolComponent implements OnInit {
   protocolForm: FormGroup;
@@ -33,25 +37,43 @@ export class AddProtocolComponent implements OnInit {
   comments: string;
   hostPlayers: Player[];
   guestPlayers: Player[];
-  hostDisabled: false;
-  guestDisabled: false;
   isHome: boolean;
   guestGoalForm: FormGroup;
   hostGoalForm: FormGroup;
   guestChangeForm: FormGroup;
   hostChangeForm: FormGroup;
-
+  hostCardForm: FormGroup;
+  guestCardForm: FormGroup;
   guestGoals: Goal[];
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  hostCard: Card[];
+  guestCard: Card[];
+  minDate = new Date(2019, 9, 1);
+  maxDate = new Date(2020, 6, 15);
 
   constructor(
     private teamService: TeamServiceService,
-    private playerService: PlayerServiceService
+    private playerService: PlayerServiceService,
+    private formBuilder: FormBuilder,
+    private datePipe: DatePipe,
+    private protocolService: ProtocolServiceService
   ) {}
 
   ngOnInit(): void {
     this.getTeams();
     this.getPlayers();
     this.isHome = true;
+
+    this.firstFormGroup = this.formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this.formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+
+
+
 
     this.protocolForm = new FormGroup({
       refree: new FormControl(null, [
@@ -60,41 +82,43 @@ export class AddProtocolComponent implements OnInit {
         Validators.maxLength(30)
       ]),
       host: new FormControl(this.allTeams, [Validators.required]),
-      guest: new FormControl(null, [Validators.required])
+      guest: new FormControl(null, [Validators.required]),
+      matchDate: new FormControl(null, [Validators.required]),
+      comment: new FormControl('Brak', [Validators.required]),
     });
 
     this.hostPlayersForm = new FormGroup({
-      hostGoalkeeper: new FormControl("", [Validators.required]),
-      hostRightDefender: new FormControl("", [Validators.required]),
-      hostLeftDefender: new FormControl("", [Validators.required]),
-      hostLeftMidDefender: new FormControl("", [Validators.required]),
-      hostRightMidDefender: new FormControl("", [Validators.required]),
-      hostLeftMid: new FormControl("", [Validators.required]),
-      hostRightMid: new FormControl("", [Validators.required]),
-      hostMidfielder: new FormControl("", [Validators.required]),
-      hostRightWinger: new FormControl("", [Validators.required]),
-      hostLeftWinger: new FormControl("", [Validators.required]),
-      hostStricker: new FormControl("", [Validators.required])
+      hostGoalkeeper: new FormControl('', [Validators.required]),
+      hostRightDefender: new FormControl('', [Validators.required]),
+      hostLeftDefender: new FormControl('', [Validators.required]),
+      hostLeftMidDefender: new FormControl('', [Validators.required]),
+      hostRightMidDefender: new FormControl('', [Validators.required]),
+      hostLeftMid: new FormControl('', [Validators.required]),
+      hostRightMid: new FormControl('', [Validators.required]),
+      hostMidfielder: new FormControl('', [Validators.required]),
+      hostRightWinger: new FormControl('', [Validators.required]),
+      hostLeftWinger: new FormControl('', [Validators.required]),
+      hostStricker: new FormControl('', [Validators.required])
     });
 
     this.guestPlayersForm = new FormGroup({
-      guestGoalkeeper: new FormControl("", [Validators.required]),
-      guestRightDefender: new FormControl("", [Validators.required]),
-      guestLeftDefender: new FormControl("", [Validators.required]),
-      guestLeftMidDefender: new FormControl("", [Validators.required]),
-      guestRightMidDefender: new FormControl("", [Validators.required]),
-      guestLeftMid: new FormControl("", [Validators.required]),
-      guestRightMid: new FormControl("", [Validators.required]),
-      guestMidfielder: new FormControl("", [Validators.required]),
-      guestRightWinger: new FormControl("", [Validators.required]),
-      guestLeftWinger: new FormControl("", [Validators.required]),
-      guestStricker: new FormControl("", [Validators.required])
+      guestGoalkeeper: new FormControl('', [Validators.required]),
+      guestRightDefender: new FormControl('', [Validators.required]),
+      guestLeftDefender: new FormControl('', [Validators.required]),
+      guestLeftMidDefender: new FormControl('', [Validators.required]),
+      guestRightMidDefender: new FormControl('', [Validators.required]),
+      guestLeftMid: new FormControl('', [Validators.required]),
+      guestRightMid: new FormControl('', [Validators.required]),
+      guestMidfielder: new FormControl('', [Validators.required]),
+      guestRightWinger: new FormControl('', [Validators.required]),
+      guestLeftWinger: new FormControl('', [Validators.required]),
+      guestStricker: new FormControl('', [Validators.required])
     });
 
     this.guestGoalForm = new FormGroup({
-      guestStricker: new FormControl("", [Validators.required]),
-      guestAssitant: new FormControl("", [Validators.required]),
-      guestGoalMinute: new FormControl("", [
+      guestScorrer: new FormControl('', [Validators.required]),
+      guestAssitant: new FormControl('', [Validators.required]),
+      guestGoalMinute: new FormControl('', [
         Validators.required,
         CustomValidator.numeric,
         Validators.max(90),
@@ -103,9 +127,9 @@ export class AddProtocolComponent implements OnInit {
     });
 
     this.hostGoalForm = new FormGroup({
-      hostScorrer: new FormControl("", [Validators.required]),
-      hostAssitant: new FormControl("", [Validators.required]),
-      hostGoalMinute: new FormControl("", [
+      hostScorrer: new FormControl('', [Validators.required]),
+      hostAssitant: new FormControl('', [Validators.required]),
+      hostGoalMinute: new FormControl('', [
         Validators.required,
         CustomValidator.numeric,
         Validators.max(90),
@@ -114,9 +138,9 @@ export class AddProtocolComponent implements OnInit {
     });
 
     this.guestChangeForm = new FormGroup({
-      guestPlayer: new FormControl("", [Validators.required]),
-      guestNewPlayer: new FormControl("", [Validators.required]),
-      guestChangeMinute: new FormControl("", [
+      guestPlayer: new FormControl('', [Validators.required]),
+      guestNewPlayer: new FormControl('', [Validators.required]),
+      guestChangeMinute: new FormControl('', [
         Validators.required,
         CustomValidator.numeric,
         Validators.max(90),
@@ -125,15 +149,39 @@ export class AddProtocolComponent implements OnInit {
     });
 
     this.hostChangeForm = new FormGroup({
-      hostPlayer: new FormControl("", [Validators.required]),
-      hostNewPlayer: new FormControl("", [Validators.required]),
-      hostChangeMinute: new FormControl("", [
+      hostPlayer: new FormControl('', [Validators.required]),
+      hostNewPlayer: new FormControl('', [Validators.required]),
+      hostChangeMinute: new FormControl('', [
         Validators.required,
         CustomValidator.numeric,
         Validators.max(90),
         Validators.min(1)
       ])
     });
+
+    this.hostCardForm = new FormGroup({
+      card: new FormControl('', [Validators.required]),
+      player: new FormControl('', [Validators.required]),
+      minute: new FormControl('', [
+        Validators.required,
+        CustomValidator.numeric,
+        Validators.max(90),
+        Validators.min(1)
+      ])
+    });
+
+    this.guestCardForm = new FormGroup({
+      card: new FormControl('', [Validators.required]),
+      player: new FormControl('', [Validators.required]),
+      minute: new FormControl('', [
+        Validators.required,
+        CustomValidator.numeric,
+        Validators.max(90),
+        Validators.min(1)
+      ])
+    });
+
+
   }
 
   getTeams() {
@@ -146,6 +194,16 @@ export class AddProtocolComponent implements OnInit {
     this.playerService.getPlayers().subscribe(players => {
       this.allPlayers = players;
     });
+  }
+
+  postProtocol(protocol: Protocol) {
+    this.protocolService.postProtocol(protocol).subscribe( match => {
+      console.log(match);
+    },
+      err => {
+        console.log(err);
+
+      });
   }
 
   selectHost(event) {
@@ -163,6 +221,8 @@ export class AddProtocolComponent implements OnInit {
     console.log(this.allTeams);
   }
 
+
+
   addPlayers() {
     this.hostPlayers = this.allPlayers.filter(
       player => player.club === this.protocolForm.value.host
@@ -172,7 +232,7 @@ export class AddProtocolComponent implements OnInit {
       player => player.club === this.protocolForm.value.guest
     );
 
-    document.getElementById("playersGoalsChange").style.display = "block";
+    document.getElementById('playersGoalsChange').style.display = 'block';
   }
 
   selectHostGoalkeeper($event) {}
@@ -180,9 +240,11 @@ export class AddProtocolComponent implements OnInit {
   addHostGoal() {
     const goal: Goal = {
       scorrer: this.hostGoalForm.value.hostScorrer,
-      asistant: this.hostGoalForm.value.hostAssitant,
+      assistant: this.hostGoalForm.value.hostAssitant,
       minute: this.hostGoalForm.value.hostGoalMinute
     };
+
+    console.log(goal);
 
     if (this.hostGoals === undefined) {
       this.hostGoals = [goal];
@@ -194,12 +256,52 @@ export class AddProtocolComponent implements OnInit {
     this.hostGoalForm.reset();
   }
 
+  addHostCard() {
+    const card: Card = {
+      player: this.hostCardForm.value.player,
+      minute: this.hostCardForm.value.minute,
+      card: this.hostCardForm.value.card
+    };
+
+    console.log(card);
+
+    if (this.hostCard === undefined) {
+      this.hostCard = [card];
+    } else {
+      this.hostCard.push(card);
+    }
+
+    this.hostCardForm.reset();
+
+  }
+
+  addGuestCard() {
+    const card: Card = {
+      player: this.guestCardForm.value.player,
+      minute: this.guestCardForm.value.minute,
+      card: this.guestCardForm.value.card
+    };
+
+    console.log(card);
+
+    if (this.guestCard === undefined) {
+      this.guestCard = [card];
+    } else {
+      this.guestCard.push(card);
+    }
+
+    this.guestCardForm.reset();
+
+  }
+
   addGuestGoal() {
     const goal: Goal = {
-      scorrer: this.guestGoalForm.value.guestStricker,
-      asistant: this.guestGoalForm.value.guestAssitant,
+      scorrer: this.guestGoalForm.value.guestScorrer,
+      assistant: this.guestGoalForm.value.guestAssitant,
       minute: this.guestGoalForm.value.guestGoalMinute
     };
+
+    console.log(goal);
 
     if (this.guestGoals === undefined) {
       this.guestGoals = [goal];
@@ -210,7 +312,6 @@ export class AddProtocolComponent implements OnInit {
     this.guestGoalForm.reset();
     this.hostGoalForm.reset();
 
-    console.log;
   }
 
   homeOrAway() {
@@ -231,8 +332,8 @@ export class AddProtocolComponent implements OnInit {
       this.hostChange.push(change);
     } else {
       this.hostChange.push(change);
-      document.getElementById("hostPlayerChangeButton").style.display = "none";
-      document.getElementById("hostPlayerChangeInfo").style.display = "block";
+      document.getElementById('hostPlayerChangeButton').style.display = 'none';
+      document.getElementById('hostPlayerChangeInfo').style.display = 'block';
     }
     this.hostChangeForm.reset();
     this.guestChangeForm.reset();
@@ -247,45 +348,69 @@ export class AddProtocolComponent implements OnInit {
 
     if (this.guestChange === undefined) {
       this.guestChange = [change];
+      console.log(this.guestChange);
     } else if (this.guestChange.length < 2) {
       this.guestChange.push(change);
+      console.log(this.guestChange);
     } else {
       this.guestChange.push(change);
-      document.getElementById("guestPlayerChangeButton").style.display = "none";
-      document.getElementById("guestPlayerChangeInfo").style.display = "block";
+      document.getElementById('guestPlayerChangeButton').style.display = 'none';
+      document.getElementById('guestPlayerChangeInfo').style.display = 'block';
+      console.log(this.guestChange);
     }
+
+
     this.guestChangeForm.reset();
   }
 
   createProtocol() {
-    this.hostPlayers = this.hostPlayersForm.value;
-    this.guestPlayers = this.guestPlayersForm.value;
-    this.Protocol = {
-      guest: this.protocolForm.value.host, //tu na odwrot blad w impementacji do poprawy ,, ale dziala
-      host: this.protocolForm.value.guest,
-      refree: this.protocolForm.value.refree,
-      guestGoals: this.guestGoals,
+
+    const startDate = this.datePipe.transform(this.protocolForm.value.matchDate, 'yyyy-MM-dd').toString();
+
+    // this.hostPlayers = this.hostPlayersForm.value;
+    // this.guestPlayers = this.guestPlayersForm.value;
+
+
+    const protcol: Protocol = {
+      // refree: this.protocolForm.value.refree,
+      host: this.protocolForm.value.host,
+      guest: this.protocolForm.value.guest,
+      // date: startDate,
+      // hostCards: this.hostCard,
+      // guestCards: this.guestCard,
       hostGoals: this.hostGoals,
-      guestChange: this.guestChange,
-      hostChange: this.hostChange,
-      comments: this.comments
+      guestGoals: this.guestGoals,
+      // hostPlayers: this.hostPlayersForm.value,
+      // guestPlayers: this.guestPlayersForm.value,
+      // guestChange: this.guestChange,
+      // hostChange: this.hostChange,
+      // comments: this.protocolForm.value.comment
+
     };
 
-    console.log("protokół: ");
 
-    console.log(this.Protocol);
+    console.log('protokół object: ');
+    console.log(protcol);
+
+    const protocolJSON = JSON.stringify(this.Protocol);
+
+
+    console.log('protokół JSON: ');
+    console.log(protocolJSON);
+
+    this.postProtocol(protcol);
   }
 }
 
 export class CustomValidator {
-  // Number only validation
   static numeric(control: AbstractControl) {
-    let val = control.value;
+    const val = control.value;
 
-    if (val === null || val === "") return null;
+    if (val === null || val === '') { return null; }
 
-    if (!val.toString().match(/^[0-9]+(\.?[0-9]+)?$/))
+    if (!val.toString().match(/^[0-9]+(\.?[0-9]+)?$/)) {
       return { invalidNumber: true };
+    }
 
     return null;
   }

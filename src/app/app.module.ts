@@ -1,7 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
@@ -13,7 +12,6 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
-import { from } from "rxjs";
 import { MatSelectModule } from "@angular/material/select";
 import { HttpClientModule } from "@angular/common/http";
 import { PlayerServiceService } from "./player-service.service";
@@ -35,6 +33,16 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from "@angular/material/core";
 import { AddPlayerSuccessComponent } from './add-player/add-player-success/add-player-success.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTreeModule} from '@angular/material/tree';
+import { DatePipe } from "@angular/common";
+import {TextFieldModule} from '@angular/cdk/text-field';
+
+
+
+
 
 
 @NgModule({
@@ -73,9 +81,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     NgbModule,
     MatSortModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatProgressSpinnerModule,
+    MatStepperModule,
+    MatTabsModule,
+    MatTreeModule,
+    TextFieldModule
   ],
-  providers: [PlayerServiceService, TeamServiceService, ProtocolServiceService],
+  providers: [PlayerServiceService, TeamServiceService, ProtocolServiceService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

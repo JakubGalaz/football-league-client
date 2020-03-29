@@ -13,9 +13,22 @@
   padding: 3%;
 
 }
+.spinnerAndInfo{
+  display: none;
+}
 
 table-dark{
   border-radius: 10px;
+}
+
+.matSpinnerInfo{
+
+  margin-left: auto;
+  margin-right: auto;
+
+  background: snow;
+  border-radius: 10px;
+  display: inline-block;
 }
 
 body{

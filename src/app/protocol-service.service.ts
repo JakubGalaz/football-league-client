@@ -16,7 +16,7 @@ export class ProtocolServiceService {
   }
 
   postProtocol(protocol: Protocol): Observable<Protocol>{
-    return this.http.post("http://localhost:8081/protocols", protocol);
+    return this.http.post("http://localhost:8081/saveProtocol", protocol);
   }
 
 
