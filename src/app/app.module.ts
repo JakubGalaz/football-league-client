@@ -39,10 +39,24 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTreeModule} from '@angular/material/tree';
 import { DatePipe } from "@angular/common";
 import {TextFieldModule} from '@angular/cdk/text-field';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import {AuthService} from "./auth.service";
 
 
 
 
+const firebaseConfig = {
+  apiKey: "AIzaSyAdmAFdkEa4b3OsOXn9bGE_FBjmL2TJGoI",
+  authDomain: "football-league-65af2.firebaseapp.com",
+  databaseURL: "https://football-league-65af2.firebaseio.com",
+  projectId: "football-league-65af2",
+  storageBucket: "football-league-65af2.appspot.com",
+  messagingSenderId: "6310011462",
+  appId: "1:6310011462:web:7e30edb19a8d6f0f03a047"
+};
 
 
 @NgModule({
@@ -58,7 +72,9 @@ import {TextFieldModule} from '@angular/cdk/text-field';
     DeleteProtocolComponent,
     PlayerComponent,
     AddPlayerSuccessComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -86,9 +102,13 @@ import {TextFieldModule} from '@angular/cdk/text-field';
     MatStepperModule,
     MatTabsModule,
     MatTreeModule,
-    TextFieldModule
+    TextFieldModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule
+
+
   ],
-  providers: [PlayerServiceService, TeamServiceService, ProtocolServiceService, DatePipe],
+  providers: [PlayerServiceService, TeamServiceService, ProtocolServiceService, DatePipe, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

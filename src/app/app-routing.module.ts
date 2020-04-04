@@ -12,6 +12,8 @@ import {DeleteProtocolComponent} from "./delete-protocol/delete-protocol.compone
 import {PlayerComponent} from "./player/player.component";
 import {AddPlayerSuccessComponent} from "./add-player/add-player-success/add-player-success.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {RegisterComponent} from "./register/register.component";
+import {LoginComponent} from "./login/login.component";
 
 
 const routes: Routes = [
@@ -31,6 +33,14 @@ const routes: Routes = [
   {
     path: "addProtocol",
     component: AddProtocolComponent
+  },
+  {
+    path: "register",
+    component: RegisterComponent
+  },
+  {
+    path: "login",
+    component: LoginComponent
   },
   {
     path: "deleteTeam",

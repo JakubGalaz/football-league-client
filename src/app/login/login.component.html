@@ -1,0 +1,56 @@
+
+<body>
+<h1>Logowanie</h1>
+<div class="loginTemplate">
+<div class="login">
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input  matInput
+              type="email"
+              id="email"
+              formControlName="email"
+              placeholder="email"
+      />
+    </mat-form-field>
+
+    <div
+      class="alert alert alert-info"
+      *ngIf="
+          loginForm.get('email').errors &&
+          loginForm.get('email').errors['email'] &&
+          loginForm.get('email').dirty
+        "
+    >
+      Zły adres e-mail
+    </div>
+
+    <div
+      class="alert alert alert-info"
+      *ngIf="
+          loginForm.get('email').invalid && loginForm.get('email').dirty
+        "
+    >
+      Pole wymagane!
+    </div>
+
+
+    <mat-form-field>
+      <input  matInput
+              type="password"
+              id="password"
+              formControlName="password"
+              placeholder="Hasło"
+      />
+    </mat-form-field>
+
+<button class="btn btn-dark" [disabled]="loginForm.invalid" (click)="login()">Zaloguj</button>
+<p></p>
+<p>Nie masz jeszcze konta?</p>
+    <button class="btn btn-dark" routerLink="/register">Zarejestruj się!</button>
+
+  </form>
+
+</div>
+</div>
+</body>

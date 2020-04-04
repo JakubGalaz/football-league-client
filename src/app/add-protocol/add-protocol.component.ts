@@ -372,19 +372,19 @@ export class AddProtocolComponent implements OnInit {
 
 
     const protcol: Protocol = {
-      // refree: this.protocolForm.value.refree,
+      refree: this.protocolForm.value.refree,
       host: this.protocolForm.value.host,
       guest: this.protocolForm.value.guest,
-      // date: startDate,
-      // hostCards: this.hostCard,
-      // guestCards: this.guestCard,
+      date: startDate,
+      hostCards: this.hostCard,
+      guestCards: this.guestCard,
       hostGoals: this.hostGoals,
       guestGoals: this.guestGoals,
       // hostPlayers: this.hostPlayersForm.value,
       // guestPlayers: this.guestPlayersForm.value,
-      // guestChange: this.guestChange,
-      // hostChange: this.hostChange,
-      // comments: this.protocolForm.value.comment
+      guestChange: this.guestChange,
+      hostChange: this.hostChange,
+      comments: this.protocolForm.value.comment
 
     };
 

@@ -34,6 +34,15 @@
         <button mat-menu-item>Item 2</button>
       </mat-menu>
     </div>
+    <ng-container class="login">
+      <button  routerLink="login" class="btn btn-success" >
+        Zaloguj
+      </button>
+
+      <button  routerLink="welcomePage" class="btn btn-success" (click)="logout()">
+        Wyloguj
+      </button>
+    </ng-container>
   </nav>
 
   <router-outlet></router-outlet>
