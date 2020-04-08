@@ -48,15 +48,7 @@ import {AuthService} from "./auth.service";
 
 
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAdmAFdkEa4b3OsOXn9bGE_FBjmL2TJGoI",
-  authDomain: "football-league-65af2.firebaseapp.com",
-  databaseURL: "https://football-league-65af2.firebaseio.com",
-  projectId: "football-league-65af2",
-  storageBucket: "football-league-65af2.appspot.com",
-  messagingSenderId: "6310011462",
-  appId: "1:6310011462:web:7e30edb19a8d6f0f03a047"
-};
+
 
 
 @NgModule({
