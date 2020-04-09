@@ -21,6 +21,9 @@ export class TeamServiceService {
     return this.http.delete("http://localhost:8081/delete/" + id);
   }
 
+  getTeamById(id: string): Observable<Team> {
+    return this.http.get("http://localhost:8081/showTeamById/" + id);
+  }
 
 
 }

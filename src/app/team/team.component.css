@@ -1,0 +1,25 @@
+body{
+  background-image: url( "../../assets/backgraund.jpg");
+}
+
+h1 {
+  padding: 1%;
+
+}
+
+.teamTemplate{
+  padding: 2%;
+
+}
+
+.team{
+  padding: 2%;
+  display: inline-block;
+  background: whitesmoke;
+  border-radius: 20px;
+}
+
+h2{
+  padding: 1%;
+
+}

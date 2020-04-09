@@ -8,10 +8,14 @@ import {AuthService} from "./auth.service";
 })
 export class AppComponent {
   title = "football-league";
-  constructor(private authService: AuthService) {
+  constructor(public authService: AuthService) {
   }
 
   logout(){
     this.authService.logout();
   }
 }
+
+
+
+//jakis zjebany komentarz

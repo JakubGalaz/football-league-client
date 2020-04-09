@@ -2,6 +2,8 @@
 
 <h1>Rejestracja</h1>
 
+<div class="padding">
+<div class="register">
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 <mat-form-field>
   <input  matInput
@@ -47,6 +49,7 @@
   Pole jest wymaganie i musi posiadac od 5 do 20 znakow
 </div>
 
+
 <!--<mat-form-field>-->
 <!--  <input  matInput-->
 <!--          type="password"-->
@@ -64,6 +67,9 @@
 <!--  Hasła nie są identyczne!-->
 
 <!--</div>-->
+
 <button class="btn btn-dark" [disabled]="registerForm.invalid" (click)="signup()">Zarejestruj</button>
 </form>
+</div>
+</div>
 </body>

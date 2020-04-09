@@ -35,6 +35,8 @@
     </div>
 
 
+
+
     <mat-form-field>
       <input  matInput
               type="password"
@@ -43,6 +45,9 @@
               placeholder="Hasło"
       />
     </mat-form-field>
+
+<!--    <div *ngIf="errorMessage">{{this.errorMessage}}</div>-->
+    <div [innerHTML]="message"></div>
 
 <button class="btn btn-dark" [disabled]="loginForm.invalid" (click)="login()">Zaloguj</button>
 <p></p>

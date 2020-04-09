@@ -13,7 +13,7 @@ export class PlayerComponent implements OnInit {
   constructor(private playerService: PlayerServiceService) { }
 
   ngOnInit(): void {
-    this.getPlayerById("933");
+    this.getPlayerById("961");
   }
 
   getPlayerById(id: string){

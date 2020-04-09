@@ -27,21 +27,30 @@
       </mat-menu>
 
       <button class="btn btn-dark" mat-button [matMenuTriggerFor]="afterMenu">
-        After
+        Topowi gracze
       </button>
       <mat-menu #afterMenu="matMenu" xPosition="after">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
+        <button mat-menu-item  routerLink="bestScorrer">TOP strzelcy</button>
+        <button mat-menu-item  routerLink="bestAssistants">TOP asystenci</button>
       </mat-menu>
+
+      <button class="btn btn-dark" mat-button >
+       Tabela
+      </button>
+
+      <span *ngIf="authService.user"  style="color: cornflowerblue">Jesteś zalogowany jako {{authService.user.email}}</span>
     </div>
     <ng-container class="login">
-      <button  routerLink="login" class="btn btn-success" >
+
+      <button *ngIf="!authService.user" routerLink="login" class="btn btn-success" >
         Zaloguj
       </button>
 
-      <button  routerLink="welcomePage" class="btn btn-success" (click)="logout()">
+      <button style="right: 3%; position: absolute; display: inline-block" *ngIf="authService.user"  routerLink="welcomePage" class="btn btn-success" (click)="logout()">
         Wyloguj
       </button>
+
+
     </ng-container>
   </nav>
 

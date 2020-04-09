@@ -10,6 +10,10 @@ import {AuthService} from "../auth.service";
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  errorCode: string;
+  errorMessage: string;
+
+  message = '<p></p>';
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -25,8 +29,21 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login(){
+  login() {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
+    console.log(this.errorCode);
+    if (this.authService.loginErrorCode === 'auth/wrong-password') {
+      this.errorMessage = 'Błędne hasło';
+    }
+    if(this.authService.loginErrorCode === 'auth/user-not-found')
+    {
+      this.errorMessage = 'Nie ma takiego użytkownika';
+    }
+    else {
+      this.errorMessage = 'Błąd logowania';
+    }
+
+    this.message = '<p>' + this.errorMessage +  '</p>';
   }
 
   onSubmit(){

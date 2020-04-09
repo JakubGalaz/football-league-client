@@ -14,6 +14,9 @@ import {AddPlayerSuccessComponent} from "./add-player/add-player-success/add-pla
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
+import {BestScorrersComponent} from "./best-scorrers/best-scorrers.component";
+import {BestAssistantsComponent} from "./best-assistants/best-assistants.component";
+import {TeamComponent} from "./team/team.component";
 
 
 const routes: Routes = [
@@ -61,6 +64,18 @@ const routes: Routes = [
   {
     path: "deleteProtocol",
     component: DeleteProtocolComponent
+  },
+  {
+    path: "bestScorrer",
+    component: BestScorrersComponent
+  },
+  {
+    path: "bestAssistants",
+    component: BestAssistantsComponent
+  },
+  {
+    path: "team",
+    component: TeamComponent
   },
   {
     path: "player",
