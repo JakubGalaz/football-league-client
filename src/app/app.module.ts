@@ -44,11 +44,26 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {AuthService} from "./auth.service";
+import { BestScorrersComponent } from './best-scorrers/best-scorrers.component';
+import { BestAssistantsComponent } from './best-assistants/best-assistants.component';
+import { TeamComponent } from './team/team.component';
+import { TableComponent } from './table/table.component';
+import { MyPositionsComponent } from './my-positions/my-positions.component';
+
+import {MyPositionServiceService} from "./my-position-service.service";
 
 
 
 
-
+const firebaseConfig = {
+  apiKey: "AIzaSyAdmAFdkEa4b3OsOXn9bGE_FBjmL2TJGoI",
+  authDomain: "football-league-65af2.firebaseapp.com",
+  databaseURL: "https://football-league-65af2.firebaseio.com",
+  projectId: "football-league-65af2",
+  storageBucket: "football-league-65af2.appspot.com",
+  messagingSenderId: "6310011462",
+  appId: "1:6310011462:web:7e30edb19a8d6f0f03a047"
+};
 
 
 @NgModule({
@@ -66,7 +81,12 @@ import {AuthService} from "./auth.service";
     AddPlayerSuccessComponent,
     PageNotFoundComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    BestScorrersComponent,
+    BestAssistantsComponent,
+    TeamComponent,
+    TableComponent,
+    MyPositionsComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +120,7 @@ import {AuthService} from "./auth.service";
 
 
   ],
-  providers: [PlayerServiceService, TeamServiceService, ProtocolServiceService, DatePipe, AuthService],
+  providers: [PlayerServiceService, TeamServiceService, ProtocolServiceService, MyPositionServiceService, DatePipe, AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

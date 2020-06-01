@@ -24,10 +24,10 @@ export class AddPlayerComponent implements OnInit {
   message = new Player();
 
   foods: Position[] = [
-    { value: "Goalkeeper", viewValue: "Bramkarz" },
-    { value: "Defender", viewValue: "Obrońca" },
-    { value: "Stricker", viewValue: "Napastnik" },
-    { value: "Midfielder", viewValue: "Pomocnik" }
+    { value: "Bramkarz", viewValue: "Bramkarz" },
+    { value: "Obrońca", viewValue: "Obrońca" },
+    { value: "Napastnik", viewValue: "Napastnik" },
+    { value: "Pomocnik", viewValue: "Pomocnik" }
   ];
 
   constructor(private playerService: PlayerServiceService) {}

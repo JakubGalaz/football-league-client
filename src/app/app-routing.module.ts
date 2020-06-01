@@ -17,6 +17,8 @@ import {LoginComponent} from "./login/login.component";
 import {BestScorrersComponent} from "./best-scorrers/best-scorrers.component";
 import {BestAssistantsComponent} from "./best-assistants/best-assistants.component";
 import {TeamComponent} from "./team/team.component";
+import {TableComponent} from "./table/table.component";
+import {MyPositionsComponent} from "./my-positions/my-positions.component";
 
 
 const routes: Routes = [
@@ -74,16 +76,24 @@ const routes: Routes = [
     component: BestAssistantsComponent
   },
   {
-    path: "team",
+    path: "team/:id",
     component: TeamComponent
   },
   {
-    path: "player",
+    path: "player/:id",
     component: PlayerComponent
   },
   {
     path: "addPlayer/success",
     component: AddPlayerSuccessComponent
+  },
+  {
+    path: "table",
+    component: TableComponent
+  },
+  {
+    path: "myPositions",
+    component: MyPositionsComponent
   },
   {
     path: "**",

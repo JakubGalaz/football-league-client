@@ -34,8 +34,13 @@
         <button mat-menu-item  routerLink="bestAssistants">TOP asystenci</button>
       </mat-menu>
 
-      <button class="btn btn-dark" mat-button >
+      <button routerLink="table" class="btn btn-dark" mat-button >
        Tabela
+      </button>
+
+
+      <button routerLink="myPositions" class="btn btn-dark" mat-button >
+        Ulubione
       </button>
 
       <span *ngIf="authService.user"  style="color: cornflowerblue">Jesteś zalogowany jako {{authService.user.email}}</span>

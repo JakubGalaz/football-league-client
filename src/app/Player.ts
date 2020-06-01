@@ -1,6 +1,6 @@
 export class Player {
   constructor(
-    public _id?: { $oid: string },
+    public id?: string,
     public name?: string,
     public surname?: string,
     public age?: number,

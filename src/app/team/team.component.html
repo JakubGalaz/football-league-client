@@ -4,6 +4,8 @@
 <div class="teamTemplate">
 <div class="team">
 <h1>{{team.name}}</h1>
+  <button type="button" (click)="addToFavourite()" class="btn btn-dark">Dodaj drużynę do ulunioncyh</button>
+
 <h2>Trener: {{team.coach}}</h2>
 <h2>Stadion: {{team.stadium}}</h2>
 
@@ -30,8 +32,8 @@
 
 
         <ng-container *ngIf="player.position == 'Bramkarz'">
-          <td>{{player.name}}</td>
-          <td>{{player.surname}}</td>
+          <td class="pointer" [routerLink]="['/player', player.id]" >{{player.name}}</td>
+          <td class="pointer" [routerLink]="['/player', player.id]" >{{player.surname}}</td>
           <td>{{player.age}}</td>
           <td>{{player.position}}</td>
           <td>{{player.goals}}</td>
@@ -46,8 +48,8 @@
 
 
         <ng-container *ngIf="player.position == 'Obrońca'">
-          <td>{{player.name}}</td>
-          <td>{{player.surname}}</td>
+          <td class="pointer" [routerLink]="['/player', player.id]" >{{player.name}}</td>
+          <td class="pointer" [routerLink]="['/player', player.id]" >{{player.surname}}</td>
           <td>{{player.age}}</td>
           <td>{{player.position}}</td>
           <td>{{player.goals}}</td>
@@ -62,8 +64,8 @@
 
 
         <ng-container *ngIf="player.position == 'Pomocnik'">
-          <td>{{player.name}}</td>
-          <td>{{player.surname}}</td>
+          <td class="pointer" [routerLink]="['/player', player.id]" >{{player.name}}</td>
+          <td class="pointer" [routerLink]="['/player', player.id]" >{{player.surname}}</td>
           <td>{{player.age}}</td>
           <td>{{player.position}}</td>
           <td>{{player.goals}}</td>
@@ -80,8 +82,8 @@
 
 
         <ng-container *ngIf="player.position == 'Napastnik'">
-        <td>{{player.name}}</td>
-        <td>{{player.surname}}</td>
+        <td class="pointer" [routerLink]="['/player', player.id]" >{{player.name}}</td>
+        <td class="pointer" [routerLink]="['/player', player.id]">{{player.surname}}</td>
         <td>{{player.age}}</td>
         <td>{{player.position}}</td>
         <td>{{player.goals}}</td>

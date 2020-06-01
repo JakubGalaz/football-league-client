@@ -19,10 +19,6 @@ export class BestScorrersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPlayers();
-
-
-
-
   }
 
   getPlayers() {
