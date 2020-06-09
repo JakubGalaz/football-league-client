@@ -16,6 +16,8 @@
       Pole jest wyamgane, zakres znaków 3-15
     </p>
 
+
+
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Nazwisko</mat-label>
@@ -46,7 +48,7 @@
       class="alert"
       *ngIf="playerForm.get('age').invalid && playerForm.get('age').dirty"
     >
-      Pole jest wyamgane i musi być liczbą
+      Wiek musi być liczbą
     </p>
 
     <p>
@@ -65,7 +67,7 @@
     <mat-form-field>
       <mat-label>Pozycja</mat-label>
       <mat-select id="position" formControlName="position" required>
-        <mat-option *ngFor="let food of foods" [value]="food.value">
+        <mat-option *ngFor="let food of positions" [value]="food.value">
           {{ food.viewValue }}
         </mat-option>
       </mat-select>

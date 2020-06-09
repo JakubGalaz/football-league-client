@@ -12,7 +12,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   tmp: string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -22,16 +23,12 @@ export class RegisterComponent implements OnInit {
           Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')])),
       password: new FormControl(null, Validators.compose(
         [Validators.minLength(6), Validators.required, Validators.maxLength(20)])),
-
-    });
+   });
 
   }
-  signup(){
+  signup() {
     this.authService.signup(this.registerForm.value.email, this.registerForm.value.password);
   }
-
-  onSubmit(){
-
+  onSubmit() {
   }
-
 }

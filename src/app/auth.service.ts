@@ -13,14 +13,11 @@ export class AuthService {
   loginErrorCode: string;
   registerErrorCode: string;
 
-
-
   constructor(private angularFire: AngularFireAuth, private router: Router) {
 
     angularFire.authState.subscribe(user => {
       this.user = user;
     });
-
 
   }
 

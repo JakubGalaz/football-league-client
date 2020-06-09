@@ -30,10 +30,11 @@ sortedData: Protocol[];
   }
 
   deleteProtocolById(id: string){
-    this.protocolService.deleteProtocolById(id).subscribe( protocol => {
-        this.protocol = protocol;
-      });
-  }
+    this.protocolService.deleteProtocolById(id);
+    console.info(id)
+      //  window.location.reload();
+      }
+
 
   sortData(sort: Sort) {
     const data = this.allProtocols.slice();

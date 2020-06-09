@@ -198,7 +198,7 @@ export class AddProtocolComponent implements OnInit {
 
   postProtocol(protocol: Protocol) {
     this.protocolService.postProtocol(protocol).subscribe( match => {
-      console.log(match);
+   //   console.log(match);
     },
       err => {
         console.log(err);
@@ -207,7 +207,7 @@ export class AddProtocolComponent implements OnInit {
   }
 
   selectHost(event) {
-    console.log(event.value);
+  //  console.log(event.value);
     this.aviableTeams = this.allTeams.slice(0);
     const index = this.allTeams.findIndex(
       i => i.name === this.protocolForm.value.host
@@ -217,8 +217,8 @@ export class AddProtocolComponent implements OnInit {
       this.aviableTeams.splice(index, 1);
     }
 
-    console.log(this.aviableTeams);
-    console.log(this.allTeams);
+  //  console.log(this.aviableTeams);
+   // console.log(this.allTeams);
   }
 
 
@@ -244,7 +244,7 @@ export class AddProtocolComponent implements OnInit {
       minute: this.hostGoalForm.value.hostGoalMinute
     };
 
-    console.log(goal);
+  //  console.log(goal);
 
     if (this.hostGoals === undefined) {
       this.hostGoals = [goal];
@@ -263,7 +263,7 @@ export class AddProtocolComponent implements OnInit {
       card: this.hostCardForm.value.card
     };
 
-    console.log(card);
+  //  console.log(card);
 
     if (this.hostCard === undefined) {
       this.hostCard = [card];
@@ -282,7 +282,7 @@ export class AddProtocolComponent implements OnInit {
       card: this.guestCardForm.value.card
     };
 
-    console.log(card);
+   // console.log(card);
 
     if (this.guestCard === undefined) {
       this.guestCard = [card];
@@ -301,7 +301,7 @@ export class AddProtocolComponent implements OnInit {
       minute: this.guestGoalForm.value.guestGoalMinute
     };
 
-    console.log(goal);
+  //  console.log(goal);
 
     if (this.guestGoals === undefined) {
       this.guestGoals = [goal];
@@ -348,15 +348,15 @@ export class AddProtocolComponent implements OnInit {
 
     if (this.guestChange === undefined) {
       this.guestChange = [change];
-      console.log(this.guestChange);
+    //  console.log(this.guestChange);
     } else if (this.guestChange.length < 2) {
       this.guestChange.push(change);
-      console.log(this.guestChange);
+     // console.log(this.guestChange);
     } else {
       this.guestChange.push(change);
       document.getElementById('guestPlayerChangeButton').style.display = 'none';
       document.getElementById('guestPlayerChangeInfo').style.display = 'block';
-      console.log(this.guestChange);
+     // console.log(this.guestChange);
     }
 
 
@@ -389,18 +389,123 @@ export class AddProtocolComponent implements OnInit {
     };
 
 
-    console.log('protokół object: ');
-    console.log(protcol);
+   // console.log('protokół object: ');
+   // console.log(protcol);
 
     const protocolJSON = JSON.stringify(this.Protocol);
 
 
-    console.log('protokół JSON: ');
-    console.log(protocolJSON);
+    // console.log('protokół JSON: ');
+    // console.log(protocolJSON);
+
+
+
 
     this.postProtocol(protcol);
+
+
+    this.updatePlayer();
+  }
+
+  /*
+  updateHostPlayer(){
+    this.hostGoalForm
+
+    this.playerService.updatePlayer()
+  }
+*/
+
+  updatePlayer() {
+    var id;
+    var player;
+    var assistant;
+
+    if(this.hostGoals !== undefined){
+      for( var i = 0; i < this.hostGoals.length; i++){
+        id = this.hostGoals[i].scorrer.id.toString();
+        player  = this.allPlayers.find( pl =>  pl.id === id)
+        player.goals = player.goals + 1;
+        this.playerService.updatePlayer(player).subscribe( a => {
+          console.log(a)
+        });
+
+        id =  this.hostGoals[i].assistant.id.toString();
+        player  = this.allPlayers.find( pl =>  pl.id === id)
+        player.assists = player.assists + 1;
+
+        this.playerService.updatePlayer(player).subscribe( a => {
+          console.log(a)
+        });
+
+      }
+
+    }
+
+    if(this.guestGoals !== undefined) {
+  for (var i = 0; i < this.guestGoals.length; i++) {
+    id = this.guestGoals[i].scorrer.id.toString();
+    player = this.allPlayers.find(pl => pl.id === id)
+    player.goals = player.goals + 1;
+    this.playerService.updatePlayer(player).subscribe(a => {
+      console.log(a)
+    });
+
+    id = this.hostGoals[i].assistant.id.toString();
+    player = this.allPlayers.find(pl => pl.id === id)
+    player.assists = player.assists + 1;
+
+
+    this.playerService.updatePlayer(player).subscribe(a => {
+      console.log(a)
+    });
+
   }
 }
+
+    console.log("typ kartdki " + this.hostCard[0].card.toString());
+
+
+    for( var i = 0; i < this.hostCard.length; i++) {
+    id = this.hostCard[i].player.id.toString();
+    player = this.allPlayers.find(pl => pl.id === id)
+    if(this.hostCard[i].card.toString() === "żólta"){
+        player.yellowCards = player.yellowCards + 1;
+        console.log("JEST żółta!!")
+      }else {
+        player.redCards = player.redCards + 1;
+      }
+
+    this.playerService.updatePlayer(player).subscribe( a => {
+        console.log(a)
+      });
+
+
+      }
+
+
+    }
+
+
+
+
+ //  var myid = this.hostGoals[0].scorrer.id.toString()
+  //  console.log("id gracza z golem:" + myid);
+    // tslint:disable-next-line:no-unused-expression
+
+
+
+
+   // console.log(player.goals);
+
+
+
+
+
+
+
+}
+
+
 
 export class CustomValidator {
   static numeric(control: AbstractControl) {
@@ -415,3 +520,5 @@ export class CustomValidator {
     return null;
   }
 }
+
+

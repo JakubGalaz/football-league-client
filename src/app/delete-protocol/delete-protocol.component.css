@@ -9,6 +9,10 @@ input{
 
 }
 
+.padding{
+  padding: 2%;
+}
+
 .searchBar{
   padding: 1%;
 }

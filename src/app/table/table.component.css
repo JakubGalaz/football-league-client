@@ -1,3 +1,11 @@
 .pointer{
   cursor: pointer;
 }
+
+body{
+  background-image: url( "../../assets/backgraund.jpg");
+}
+
+.padding {
+  padding: 2%;
+}

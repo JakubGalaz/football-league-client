@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TeamServiceService} from '../team-service.service';
 import {Team} from '../Team';
 import {Subscription} from 'rxjs';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MyPositionsComponent} from '../my-positions/my-positions.component';
 import {MyPositionServiceService} from '../my-position-service.service';
 import {FavouritePosition} from '../FavouritePosition';
@@ -18,18 +18,18 @@ export class TeamComponent implements OnInit {
   private routeSub: Subscription;
   idTeam: string;
   constructor(private teamService: TeamServiceService, private route: ActivatedRoute,
-              private myPositionServiceService: MyPositionServiceService, public  authService: AuthService) {
+              private myPositionServiceService: MyPositionServiceService, public  authService: AuthService,
+              private router: Router) {
 
   }
 
   ngOnInit(): void {
 
     this.routeSub = this.route.params.subscribe(params => {
-      console.log(params); // log the entire params object
-      console.log(params.id); // log the value of id
       this.idTeam = params.id;
       this.getTeamByID(params.id);
     });
+
   }
 
 
@@ -51,5 +51,7 @@ export class TeamComponent implements OnInit {
       data => console.log('success', data),
       error => console.log('oops', error)
     );
+
+    this.router.navigate(['/myPositions']);
   }
 }

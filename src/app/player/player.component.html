@@ -4,31 +4,51 @@
 
 <div class="myInfo">
   <div class="playerInfo">
+
+    <div class="name">
     <h1>{{player.surname}}</h1>
     <h2>{{player.name}}</h2>
+    </div>
+    <button type="button" class="btn btn-dark" (click)="addToFavourite()">Dodaj do ulubionych</button>
+    <div class="avatar">
+
+      <img src= "../../assets/avatar.png" alt="avatar icon">
+
+
+
+
+        <div>Wiek: {{player.age}}</div>
+
+
+    </div>
+
+
+
+
+
 
     <div class="firstInfo">
 
+      <div>Nominalna pozycja: {{player.position}}</div>
+
+      <div>Klub: {{player.club}}</div>
     <div>
       Gole
       <i class="fa fa-soccer-ball-o" style="font-size:36px"></i>
       {{player.goals}}
     </div>
 
-    <div>
+    <div class="assists">
       Asysty
       <i class="fa fa-soccer-ball-o" style="font-size:36px; color: #7f98d3"></i>
       {{player.assists}}
     </div>
 
-    <div class="pitchIcon">
-Mecze
-      <img src= "../../assets/pitch_icon.png" alt="pitch icon">
-    </div>
-    </div>
 
 
-    <div class="secondInfo">
+
+
+
       <div class="cardIcon">
 
       </div>
@@ -48,13 +68,13 @@ Mecze
 {{player.redCards}}
       </div>
 
-    </div>
+
   </div>
 
 
 
 </div>
-
+</div>
 
 
 

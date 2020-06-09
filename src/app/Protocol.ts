@@ -5,7 +5,7 @@ import {Card} from "./Card";
 
 export class Protocol {
   constructor(
-    public _id?: { $oid: string },
+    public id?: string ,
     public refree?: string,
     public host?: string,
     public guest?: string,

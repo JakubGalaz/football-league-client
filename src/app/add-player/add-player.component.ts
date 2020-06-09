@@ -19,16 +19,18 @@ interface Position {
   styleUrls: ["./add-player.component.css"]
 })
 export class AddPlayerComponent implements OnInit {
-  playerForm: FormGroup;
+
 
   message = new Player();
 
-  foods: Position[] = [
+  positions: Position[] = [
     { value: "Bramkarz", viewValue: "Bramkarz" },
     { value: "Obrońca", viewValue: "Obrońca" },
     { value: "Napastnik", viewValue: "Napastnik" },
     { value: "Pomocnik", viewValue: "Pomocnik" }
   ];
+
+  playerForm: FormGroup;
 
   constructor(private playerService: PlayerServiceService) {}
 
@@ -79,24 +81,25 @@ export class AddPlayerComponent implements OnInit {
     };
 
     this.playerService.postPlayer(this.message).subscribe(player => {
-      console.log("Wysłano player: " + player);
+      console.log("Create player: " + player);
     },
       err => {
       console.log(err);
 
     });
   }
+
+
 }
 
 export class CustomValidator {
-  // Number only validation
   static numeric(control: AbstractControl) {
     let val = control.value;
 
     if (val === null || val === "") return null;
 
     if (!val.toString().match(/^[0-9]+(\.?[0-9]+)?$/))
-      return { invalidNumber: true };
+      return {invalidNumber: true};
 
     return null;
   }

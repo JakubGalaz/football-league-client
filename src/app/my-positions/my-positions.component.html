@@ -1,1 +1,74 @@
-<p>my-positions works!</p>
+<body>
+<div class="padding">
+
+  <table class="table table-dark">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Drużyna</th>
+      <th scope="col">M</th>
+      <th scope="col">W</th>
+      <th scope="col">R</th>
+      <th scope="col">P</th>
+      <th scope="col">+</th>
+      <th scope="col">-</th>
+      <th scope="col">-/+</th>
+      <th scope="col">PKT</th>
+      <th scope="col">AKCJA</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let team of teams;let indexOfTeams=index">
+      <th>{{indexOfTeams+1}}</th>
+      <td  class="pointer" [routerLink]="['/team', team.id]">  {{team.name}} </td>
+      <td>{{team.win + team.lose + team.draw}}</td>
+      <td>{{team.win}}</td>
+      <td>{{team.draw}}</td>
+      <td>{{team.lose}}</td>
+      <td>{{team.goalsScored}}</td>
+      <td>{{team.goalLost}}</td>
+      <td>{{team.goalsScored - team.goalLost}}</td>
+      <td>{{team.win*3 + team.draw}}</td>
+      <td><button (click)="deleteMyPosition(team.id)">Usuń</button></td>
+    </tr>
+
+    </tbody>
+  </table>
+  </div>
+<div class="padding">
+  <table class="table table-dark">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Imię</th>
+      <th scope="col">Nazwisko</th>
+      <th scope="col">Wiek</th>
+      <th scope="col">Pozycja</th>
+      <th scope="col">Klub</th>
+      <th scope="col">Bramki</th>
+      <th scope="col">Asysty</th>
+      <th scope="col">Żólte kartki</th>
+      <th scope="col">Czerwone kartki</th>
+      <th scope="col">AKCJA</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let player of players;let indexOfTeams=index">
+      <th>{{indexOfTeams+1}}</th>
+      <td  class="pointer" [routerLink]="['/team', player.id]">  {{player.name}} </td>
+      <td>{{player.surname}}</td>
+      <td>{{player.age}}</td>
+      <td>{{player.position}}</td>
+      <td>{{player.club}}</td>
+      <td>{{player.goals}}</td>
+      <td>{{player.assists}}</td>
+      <td>{{player.yellowCards}}</td>
+      <td>{{player.redCards}}</td>
+      <td><button (click)="deleteMyPosition(player.id)">Usuń</button></td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+</body>

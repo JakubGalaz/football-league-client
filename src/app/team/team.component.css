@@ -1,5 +1,9 @@
 body{
   background-image: url( "../../assets/backgraund.jpg");
+  min-width: 1980px;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  height: auto;
 }
 
 h1 {
@@ -9,6 +13,7 @@ h1 {
 
 .teamTemplate{
   padding: 2%;
+  position: center;
 
 }
 

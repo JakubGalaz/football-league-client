@@ -23,13 +23,11 @@ this.getTeams();
 
   }
 
-
-
   getTeams() {
     this.teamServiceService.getTeams().subscribe(team => {
       this.teams = team;
-      console.log(this.teams);
-      console.log(this.teams[1].id);
+      this.teams =  this.teams.sort((a, b) => ((a.win * 3 + a.draw) < (b.win * 3 + b.draw )) ? 1 :
+        ((a.win * 3 + a.draw) === (b.win * 3 + b.draw )) ? (((a.goalsScored - a.goalLost) < (b.goalsScored - b.goalLost)) ? 1 : -1) : -1 );
     });
   }
 

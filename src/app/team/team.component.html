@@ -4,7 +4,7 @@
 <div class="teamTemplate">
 <div class="team">
 <h1>{{team.name}}</h1>
-  <button type="button" (click)="addToFavourite()" class="btn btn-dark">Dodaj drużynę do ulunioncyh</button>
+  <button type="button" (click)="addToFavourite()" class="btn btn-dark">Dodaj drużynę do ulubionych</button>
 
 <h2>Trener: {{team.coach}}</h2>
 <h2>Stadion: {{team.stadium}}</h2>
@@ -18,10 +18,7 @@
         <th scope="col">Wiek</th>
 
         <th scope="col">Pozycja</th>
-        <th scope="col">Gole</th>
-        <th scope="col">Asysty</th>
-        <th scope="col">Żółte kartki</th>
-        <th scope="col">Czerwone kartki</th>
+
       </tr>
       </thead >
       <tbody >
@@ -36,10 +33,7 @@
           <td class="pointer" [routerLink]="['/player', player.id]" >{{player.surname}}</td>
           <td>{{player.age}}</td>
           <td>{{player.position}}</td>
-          <td>{{player.goals}}</td>
-          <td>{{player.assists}}</td>
-          <td>{{player.yellowCards}}</td>
-          <td>{{player.redCards}}</td>
+
         </ng-container>
       </tr>
 
@@ -52,10 +46,7 @@
           <td class="pointer" [routerLink]="['/player', player.id]" >{{player.surname}}</td>
           <td>{{player.age}}</td>
           <td>{{player.position}}</td>
-          <td>{{player.goals}}</td>
-          <td>{{player.assists}}</td>
-          <td>{{player.yellowCards}}</td>
-          <td>{{player.redCards}}</td>
+
         </ng-container>
       </tr>
 
@@ -68,10 +59,7 @@
           <td class="pointer" [routerLink]="['/player', player.id]" >{{player.surname}}</td>
           <td>{{player.age}}</td>
           <td>{{player.position}}</td>
-          <td>{{player.goals}}</td>
-          <td>{{player.assists}}</td>
-          <td>{{player.yellowCards}}</td>
-          <td>{{player.redCards}}</td>
+
         </ng-container>
       </tr>
 
@@ -86,10 +74,7 @@
         <td class="pointer" [routerLink]="['/player', player.id]">{{player.surname}}</td>
         <td>{{player.age}}</td>
         <td>{{player.position}}</td>
-        <td>{{player.goals}}</td>
-        <td>{{player.assists}}</td>
-        <td>{{player.yellowCards}}</td>
-        <td>{{player.redCards}}</td>
+
         </ng-container>
       </tr>
 

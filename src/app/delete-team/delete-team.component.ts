@@ -38,6 +38,7 @@ export class DeleteTeamComponent implements OnInit {
     this.teamService.deleteTeamById(id).subscribe(team => {
       console.log('Delete team by id');
       console.log(team);
+      window.location.reload();
     });
   }
 
