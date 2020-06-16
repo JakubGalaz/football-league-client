@@ -207,7 +207,7 @@ export class AddProtocolComponent implements OnInit {
   }
 
   selectHost(event) {
-  //  console.log(event.value);
+
     this.aviableTeams = this.allTeams.slice(0);
     const index = this.allTeams.findIndex(
       i => i.name === this.protocolForm.value.host
@@ -217,8 +217,6 @@ export class AddProtocolComponent implements OnInit {
       this.aviableTeams.splice(index, 1);
     }
 
-  //  console.log(this.aviableTeams);
-   // console.log(this.allTeams);
   }
 
 
@@ -244,7 +242,7 @@ export class AddProtocolComponent implements OnInit {
       minute: this.hostGoalForm.value.hostGoalMinute
     };
 
-  //  console.log(goal);
+    //  console.log(goal);
 
     if (this.hostGoals === undefined) {
       this.hostGoals = [goal];
@@ -263,7 +261,6 @@ export class AddProtocolComponent implements OnInit {
       card: this.hostCardForm.value.card
     };
 
-  //  console.log(card);
 
     if (this.hostCard === undefined) {
       this.hostCard = [card];
@@ -418,7 +415,6 @@ export class AddProtocolComponent implements OnInit {
   updatePlayer() {
     var id;
     var player;
-    var assistant;
 
     if(this.hostGoals !== undefined){
       for( var i = 0; i < this.hostGoals.length; i++){

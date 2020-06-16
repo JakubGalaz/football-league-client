@@ -33,12 +33,12 @@ players: Player[];
               private  teamServiceService: TeamServiceService, private playerServiceService: PlayerServiceService) { }
 
   ngOnInit(): void {
-    this.myPositionServiceService.getPositions().subscribe( position => {
+    this.myPositionServiceService.getPositions().subscribe(position => {
       this.allPosition = position;
       console.log(this.authService.user.email.toString());
-      this.myPosition = this.allPosition.filter( allPosition => allPosition.email === this.authService.user.email.toString());
-      this.positionsTeams = this.myPosition.filter( myPosition => myPosition.type === 'team');
-      this.positionsPlayers = this.myPosition.filter( myPosition => myPosition.type === 'player')
+      this.myPosition = this.allPosition.filter(allPosition => allPosition.email === this.authService.user.email.toString());
+      this.positionsTeams = this.myPosition.filter(myPosition => myPosition.type === 'team');
+      this.positionsPlayers = this.myPosition.filter(myPosition => myPosition.type === 'player')
       this.getAllTeams(this.positionsTeams);
       this.getAllPlayers(this.positionsPlayers);
     });
@@ -47,30 +47,20 @@ players: Player[];
   getAllTeams(positions: FavouritePosition[]) {
     this.teamServiceService.getTeams().subscribe(team => {
       this.allTeams = team;
-
-
-
       for (let i = 0; i < positions.length; i++) {
-
         for (let a = 0; a < this.allTeams.length; a++) {
-
           if (positions[i].idPosition.toString() === this.allTeams[a].id.toString()) {
-
             if (this.teams === undefined) {
-            this.teams = [this.allTeams[0]];
-
+              this.teams = [this.allTeams[0]];
             } else {
-
               this.teams.push(this.allTeams[a]);
-
-            }
             }
           }
         }
-          });
-
-
+      }
+    });
   }
+
 
   getAllPlayers(positions: FavouritePosition[]) {
     this.playerServiceService.getPlayers().subscribe( player => {
