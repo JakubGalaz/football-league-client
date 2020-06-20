@@ -12,6 +12,7 @@ export class AuthService {
   user: User;
   loginErrorCode: string;
   registerErrorCode: string;
+  visable = 'hidden';
 
   constructor(private angularFire: AngularFireAuth, private router: Router) {
 
@@ -24,6 +25,11 @@ export class AuthService {
   login(email: string, password: string) {
     this.angularFire.auth.signInWithEmailAndPassword(email, password).then(value => {
       console.log(value);
+      if(this.user.email.toString() === 'admin@admin.pl'){
+        console.log("Weszedl adni!");
+        this.visable = 'hidden';
+        console.log(this.visable)
+      }
       this.router.navigate(['/welcomePage']);
     }).catch(err => {
       console.log(err.code);

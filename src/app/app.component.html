@@ -2,15 +2,15 @@
   <nav class="navbar navbar-dark bg-dark">
     <div>
       <a class="navbar-brand" href="/welcomePage">Liga</a>
-      <button class="btn btn-dark" mat-button [matMenuTriggerFor]="aboveMenu">
+      <button  *ngIf="authService.user"  class="btn btn-dark" mat-button [matMenuTriggerFor]="aboveMenu">
         Drużyna
       </button>
-      <mat-menu #aboveMenu="matMenu" yPosition="above">
+      <mat-menu #aboveMenu="matMenu" yPosition="above" >
         <button mat-menu-item routerLink="addTeam">Dodaj drużynę </button>
         <button mat-menu-item  routerLink="deleteTeam">Usuń drużunę</button>
       </mat-menu>
 
-      <button class="btn btn-dark" mat-button [matMenuTriggerFor]="belowMenu">
+      <button  id="player" *ngIf="authService.user"  class="btn btn-dark" mat-button [matMenuTriggerFor]="belowMenu">
         Zawodnik
       </button>
       <mat-menu #belowMenu="matMenu" yPosition="below">
@@ -18,7 +18,7 @@
         <button mat-menu-item routerLink="deletePlayer">Usuń zawodnika</button>
       </mat-menu>
 
-      <button class="btn btn-dark" mat-button [matMenuTriggerFor]="beforeMenu">
+      <button  *ngIf="authService.user" class="btn btn-dark" mat-button [matMenuTriggerFor]="beforeMenu">
         Protokół
       </button>
       <mat-menu #beforeMenu="matMenu" xPosition="before">
@@ -39,7 +39,7 @@
       </button>
 
 
-      <button routerLink="myPositions" class="btn btn-dark" mat-button >
+      <button *ngIf="authService.user"  routerLink="myPositions" class="btn btn-dark" mat-button >
         Ulubione
       </button>
 

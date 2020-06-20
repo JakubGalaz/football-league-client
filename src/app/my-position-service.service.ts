@@ -26,7 +26,8 @@ export class MyPositionServiceService {
 
   }
 
-  deletePositionById(id: string) {
-    this.http.delete('deleteFavouritePosiotion/' + id);
+  deletePositionById(id: string): Observable<FavouritePosition> {
+    console.log('delte protocol by id: ' + id)
+    return this.http.delete('http://localhost:8081/deleteFavouritePosition/' + id);
   }
 }

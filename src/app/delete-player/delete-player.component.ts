@@ -77,7 +77,7 @@ export class DeletePlayerComponent implements OnInit {
     this.playerService.deletePlayerById(id).subscribe(player => {
       console.log('Delete team by id');
       console.log(player);
-      window.location.reload();
+      //window.location.reload();
     });
   }
 

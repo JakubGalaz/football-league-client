@@ -26,8 +26,8 @@ export class ProtocolServiceService {
 
   deleteProtocolById(id: string): Observable<Protocol>{
     console.log("DELETE PROTOCL!!")
-    this.http.delete("http://localhost:8081/deleteProtocolById/5e81247c94ed6d65f29cc35b")
-    return  this.http.delete("http://localhost:8081/deleteProtcolById/" + id);
+    //this.http.delete("http://localhost:8081/deleteProtocolById/id")
+    return this.http.delete("http://localhost:8081/deleteProtocolById/" + id);
   }
 
 

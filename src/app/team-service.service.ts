@@ -25,5 +25,7 @@ export class TeamServiceService {
     return this.http.get("http://localhost:8081/showTeamById/" + id);
   }
 
-
+  updateTeam(team: Team): Observable<Team>{
+    return this.http.put("http://localhost:8081/updateTeam", team);
+  }
 }

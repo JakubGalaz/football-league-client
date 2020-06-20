@@ -19,6 +19,7 @@ import {BestAssistantsComponent} from "./best-assistants/best-assistants.compone
 import {TeamComponent} from "./team/team.component";
 import {TableComponent} from "./table/table.component";
 import {MyPositionsComponent} from "./my-positions/my-positions.component";
+import {AuthGuardService} from "./auth-guard.service";
 
 
 const routes: Routes = [
@@ -29,15 +30,18 @@ const routes: Routes = [
 
   {
     path: "addPlayer",
-    component: AddPlayerComponent
+    component: AddPlayerComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: "addTeam",
-    component: AddTeamComponent
+    component: AddTeamComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: "addProtocol",
-    component: AddProtocolComponent
+    component: AddProtocolComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: "register",
@@ -49,7 +53,8 @@ const routes: Routes = [
   },
   {
     path: "deleteTeam",
-    component: DeleteTeamComponent
+    component: DeleteTeamComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: "deleteTeam/success",
@@ -61,11 +66,13 @@ const routes: Routes = [
   },
   {
     path: "deletePlayer",
-    component: DeletePlayerComponent
+    component: DeletePlayerComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: "deleteProtocol",
-    component: DeleteProtocolComponent
+    component: DeleteProtocolComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: "bestScorrer",

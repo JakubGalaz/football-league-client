@@ -51,6 +51,7 @@ import { TableComponent } from './table/table.component';
 import { MyPositionsComponent } from './my-positions/my-positions.component';
 
 import {MyPositionServiceService} from "./my-position-service.service";
+import {AuthGuardService} from "./auth-guard.service";
 
 
 
@@ -120,7 +121,7 @@ const firebaseConfig = {
 
 
   ],
-  providers: [PlayerServiceService, TeamServiceService, ProtocolServiceService, MyPositionServiceService, DatePipe, AuthService ],
+  providers: [PlayerServiceService, TeamServiceService, ProtocolServiceService, MyPositionServiceService, DatePipe, AuthService, AuthGuardService ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

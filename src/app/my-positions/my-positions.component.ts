@@ -85,11 +85,30 @@ players: Player[];
   }
 
   deleteMyPosition(idTeam){
-const position: FavouritePosition[] = this.positionsTeams.filter( myPosition => myPosition.idPosition === idTeam)
-    console.log(position[0].id)
-this.myPositionServiceService.deletePositionById(position[0].id);
-//window.location.reload();
+const position: FavouritePosition[] = this.positionsTeams.filter( myPosition => myPosition.idPosition === idTeam);
+    console.log('id druzyny' + idTeam)
+    console.log(position[0].id);
+    this.myPositionServiceService.deletePositionById(position[0].id.toString()).subscribe( position =>
+    {
+      console.log(position);
+    });
+    //window.location.reload();
   }
+
+  deleteMyPlayer(idPlayer){
+    console.log('idplayer:' + idPlayer)
+    const position: FavouritePosition[] = this.positionsTeams.filter( myPosition => myPosition.idPosition === idPlayer);
+    // tslint:disable-next-line:no-shadowed-variable
+    this.myPositionServiceService.deletePositionById(position[0].id.toString()).subscribe( position =>
+    {
+      console.log(position);
+    });
+    //window.location.reload();
+  }
+
+
+
+
 
 
 }
