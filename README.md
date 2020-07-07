@@ -29,7 +29,7 @@ The node.js runtime environment is required to run the application. After instal
 
 ## Use case diagram
 
-![Use case](./images/rysunek6.2.JPG)
+![Use case](./images/rysunek6.2.jpg)
 
 
 ## Features
