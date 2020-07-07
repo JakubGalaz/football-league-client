@@ -1,27 +1,30 @@
-# FootballLeague
+## Table of contents
+* [Football League](#football-league)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Use case diagram](#use-case-diagram)
+* [Features](#features)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.3.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Football League
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies
 
-## Build
+- Angular 8
+- HTML 3 
+- CSS 
+- JavaScript 
+- TypeScript 
+- Bootstrap 
+- Angular Material
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Setup
 
-## Running unit tests
+The node.js runtime environment is required to run the application. After installing it, run the command line and then go to the main directory of the project. In the console, enter the command ng serve which will start our application. The next step is to open any web browser and enter the address of the local host: localhost: 4200. The application start page will load in your browser.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Use case diagram
 
-## Running end-to-end tests
+## Features
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
