@@ -29,7 +29,7 @@ The node.js runtime environment is required to run the application. After instal
 
 ## Use case diagram
 
-![Use case](./images/rysunek6.2.jpeg)
+![Use case](./images/rysunek6.2.JPEG)
 
 
 ## Features
@@ -78,3 +78,7 @@ Add protocol
 ![Add protocol](./images/rysunek7.27.png)
 
 ![Add protocol](./images/rysunek7.26.png)
+
+Sezon table 
+
+![Add protocol](./images/rysunek7.19.png)
