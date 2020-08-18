@@ -1,87 +1,84 @@
-
 <body>
+  <div class="teamTemplate">
+    <div class="team">
+      <h1>{{ team.name }}</h1>
+      <button type="button" (click)="addToFavourite()" class="btn btn-dark">
+        Dodaj drużynę do ulubionych
+      </button>
 
-<div class="teamTemplate">
-<div class="team">
-<h1>{{team.name}}</h1>
-  <button type="button" (click)="addToFavourite()" class="btn btn-dark">Dodaj drużynę do ulubionych</button>
+      <h2>Trener: {{ team.coach }}</h2>
+      <h2>Stadion: {{ team.stadium }}</h2>
 
-<h2>Trener: {{team.coach}}</h2>
-<h2>Stadion: {{team.stadium}}</h2>
+      <div>
+        <table class="table table-striped table-dark">
+          <thead>
+            <tr>
+              <th scope="col">Imię</th>
+              <th scope="col">Nazwisko</th>
+              <th scope="col">Wiek</th>
 
-  <div>
-    <table class="table table-striped table-dark">
-      <thead>
-      <tr>
-        <th scope="col">Imię</th>
-        <th scope="col">Nazwisko</th>
-        <th scope="col">Wiek</th>
+              <th scope="col">Pozycja</th>
+            </tr>
+          </thead>
+          <tbody>
+            <td style="color: yellow;">Bramkarze</td>
+            <tr *ngFor="let player of team.players">
+              <ng-container *ngIf="player.position == 'Bramkarz'">
+                <td class="pointer" [routerLink]="['/player', player.id]">
+                  {{ player.name }}
+                </td>
+                <td class="pointer" [routerLink]="['/player', player.id]">
+                  {{ player.surname }}
+                </td>
+                <td>{{ player.age }}</td>
+                <td>{{ player.position }}</td>
+              </ng-container>
+            </tr>
 
-        <th scope="col">Pozycja</th>
+            <td style="color: yellow;">Obrnońcy</td>
+            <tr *ngFor="let player of team.players">
+              <ng-container *ngIf="player.position == 'Obrońca'">
+                <td class="pointer" [routerLink]="['/player', player.id]">
+                  {{ player.name }}
+                </td>
+                <td class="pointer" [routerLink]="['/player', player.id]">
+                  {{ player.surname }}
+                </td>
+                <td>{{ player.age }}</td>
+                <td>{{ player.position }}</td>
+              </ng-container>
+            </tr>
 
-      </tr>
-      </thead >
-      <tbody >
+            <td style="color: yellow;">Pomocnicy</td>
+            <tr *ngFor="let player of team.players">
+              <ng-container *ngIf="player.position == 'Pomocnik'">
+                <td class="pointer" [routerLink]="['/player', player.id]">
+                  {{ player.name }}
+                </td>
+                <td class="pointer" [routerLink]="['/player', player.id]">
+                  {{ player.surname }}
+                </td>
+                <td>{{ player.age }}</td>
+                <td>{{ player.position }}</td>
+              </ng-container>
+            </tr>
 
-
-      <td style="color: yellow">Bramkarze</td>
-      <tr *ngFor="let player of team.players">
-
-
-        <ng-container *ngIf="player.position == 'Bramkarz'">
-          <td class="pointer" [routerLink]="['/player', player.id]" >{{player.name}}</td>
-          <td class="pointer" [routerLink]="['/player', player.id]" >{{player.surname}}</td>
-          <td>{{player.age}}</td>
-          <td>{{player.position}}</td>
-
-        </ng-container>
-      </tr>
-
-      <td style="color: yellow">Obrnońcy</td>
-      <tr *ngFor="let player of team.players">
-
-
-        <ng-container *ngIf="player.position == 'Obrońca'">
-          <td class="pointer" [routerLink]="['/player', player.id]" >{{player.name}}</td>
-          <td class="pointer" [routerLink]="['/player', player.id]" >{{player.surname}}</td>
-          <td>{{player.age}}</td>
-          <td>{{player.position}}</td>
-
-        </ng-container>
-      </tr>
-
-      <td style="color: yellow">Pomocnicy</td>
-      <tr *ngFor="let player of team.players">
-
-
-        <ng-container *ngIf="player.position == 'Pomocnik'">
-          <td class="pointer" [routerLink]="['/player', player.id]" >{{player.name}}</td>
-          <td class="pointer" [routerLink]="['/player', player.id]" >{{player.surname}}</td>
-          <td>{{player.age}}</td>
-          <td>{{player.position}}</td>
-
-        </ng-container>
-      </tr>
-
-
-
-      <td style="color: yellow">Napastnicy</td>
-      <tr *ngFor="let player of team.players">
-
-
-        <ng-container *ngIf="player.position == 'Napastnik'">
-        <td class="pointer" [routerLink]="['/player', player.id]" >{{player.name}}</td>
-        <td class="pointer" [routerLink]="['/player', player.id]">{{player.surname}}</td>
-        <td>{{player.age}}</td>
-        <td>{{player.position}}</td>
-
-        </ng-container>
-      </tr>
-
-      </tbody>
-    </table>
+            <td style="color: yellow;">Napastnicy</td>
+            <tr *ngFor="let player of team.players">
+              <ng-container *ngIf="player.position == 'Napastnik'">
+                <td class="pointer" [routerLink]="['/player', player.id]">
+                  {{ player.name }}
+                </td>
+                <td class="pointer" [routerLink]="['/player', player.id]">
+                  {{ player.surname }}
+                </td>
+                <td>{{ player.age }}</td>
+                <td>{{ player.position }}</td>
+              </ng-container>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 </body>
-

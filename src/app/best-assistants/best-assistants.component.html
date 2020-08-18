@@ -1,33 +1,30 @@
 <body>
-<h1>Najlepsi asystenci ligi</h1>
-<div class="bestScorrer">
-  <table matSort (matSortChange)="sortData($event)" class="table table-dark">
-    <tr>
-      <th>#</th>
+  <h1>Najlepsi asystenci ligi</h1>
+  <div class="bestScorrer">
+    <table matSort (matSortChange)="sortData($event)" class="table table-dark">
+      <tr>
+        <th>#</th>
 
-      <th mat-sort-header="assists">Liczba asyst</th>
-      <th mat-sort-header="goal">Liczba bramek</th>
-      <th mat-sort-header="name">Imię</th>
-      <th mat-sort-header="surname">Nazwisko</th>
-      <th mat-sort-header="age">Wiek</th>
-      <th mat-sort-header="club">Klub</th>
-      <th mat-sort-header="position">Pozycja</th>
+        <th mat-sort-header="assists">Liczba asyst</th>
+        <th mat-sort-header="goal">Liczba bramek</th>
+        <th mat-sort-header="name">Imię</th>
+        <th mat-sort-header="surname">Nazwisko</th>
+        <th mat-sort-header="age">Wiek</th>
+        <th mat-sort-header="club">Klub</th>
+        <th mat-sort-header="position">Pozycja</th>
+      </tr>
 
-    </tr>
+      <tr *ngFor="let player of sortedData; let indexOfTeams = index">
+        <td>{{ indexOfTeams + 1 }}</td>
 
-    <tr *ngFor="let player of sortedData; let indexOfTeams=index" >
-      <td>{{indexOfTeams+1}}</td>
-
-      <td>{{player.assists}}</td>
-      <td>{{player.goals}}</td>
-      <td>{{player.name}}</td>
-      <td>{{player.surname}}</td>
-      <td>{{player.age}}</td>
-      <td>{{player.club}}</td>
-      <td>{{player.position}}</td>
-
-    </tr>
-  </table>
-</div>
-
+        <td>{{ player.assists }}</td>
+        <td>{{ player.goals }}</td>
+        <td>{{ player.name }}</td>
+        <td>{{ player.surname }}</td>
+        <td>{{ player.age }}</td>
+        <td>{{ player.club }}</td>
+        <td>{{ player.position }}</td>
+      </tr>
+    </table>
+  </div>
 </body>

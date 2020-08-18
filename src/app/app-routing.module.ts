@@ -6,112 +6,106 @@ import { AddProtocolComponent } from "./add-protocol/add-protocol.component";
 import { DeleteTeamComponent } from "./delete-team/delete-team.component";
 import { DeleteSuccessComponent } from "./delete-team/delete-success/delete-success.component";
 
-import {WelcomePageComponent} from "./welcome-page/welcome-page.component";
-import {DeletePlayerComponent} from "./delete-player/delete-player.component";
-import {DeleteProtocolComponent} from "./delete-protocol/delete-protocol.component";
-import {PlayerComponent} from "./player/player.component";
-import {AddPlayerSuccessComponent} from "./add-player/add-player-success/add-player-success.component";
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import {RegisterComponent} from "./register/register.component";
-import {LoginComponent} from "./login/login.component";
-import {BestScorrersComponent} from "./best-scorrers/best-scorrers.component";
-import {BestAssistantsComponent} from "./best-assistants/best-assistants.component";
-import {TeamComponent} from "./team/team.component";
-import {TableComponent} from "./table/table.component";
-import {MyPositionsComponent} from "./my-positions/my-positions.component";
-import {AuthGuardService} from "./auth-guard.service";
-
+import { WelcomePageComponent } from "./welcome-page/welcome-page.component";
+import { DeletePlayerComponent } from "./delete-player/delete-player.component";
+import { DeleteProtocolComponent } from "./delete-protocol/delete-protocol.component";
+import { PlayerComponent } from "./player/player.component";
+import { AddPlayerSuccessComponent } from "./add-player/add-player-success/add-player-success.component";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { RegisterComponent } from "./register/register.component";
+import { LoginComponent } from "./login/login.component";
+import { BestScorrersComponent } from "./best-scorrers/best-scorrers.component";
+import { BestAssistantsComponent } from "./best-assistants/best-assistants.component";
+import { TeamComponent } from "./team/team.component";
+import { TableComponent } from "./table/table.component";
+import { MyPositionsComponent } from "./my-positions/my-positions.component";
+import { AuthGuardService } from "./auth-guard.service";
 
 const routes: Routes = [
-  { path: "",
-    redirectTo: "/welcomePage",
-    pathMatch: "full"
-  },
+  { path: "", redirectTo: "/welcomePage", pathMatch: "full" },
 
   {
     path: "addPlayer",
     component: AddPlayerComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "addTeam",
     component: AddTeamComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "addProtocol",
     component: AddProtocolComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "register",
-    component: RegisterComponent
+    component: RegisterComponent,
   },
   {
     path: "login",
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: "deleteTeam",
     component: DeleteTeamComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "deleteTeam/success",
-    component: DeleteSuccessComponent
+    component: DeleteSuccessComponent,
   },
   {
     path: "welcomePage",
-    component: WelcomePageComponent
+    component: WelcomePageComponent,
   },
   {
     path: "deletePlayer",
     component: DeletePlayerComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "deleteProtocol",
     component: DeleteProtocolComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
   },
   {
     path: "bestScorrer",
-    component: BestScorrersComponent
+    component: BestScorrersComponent,
   },
   {
     path: "bestAssistants",
-    component: BestAssistantsComponent
+    component: BestAssistantsComponent,
   },
   {
     path: "team/:id",
-    component: TeamComponent
+    component: TeamComponent,
   },
   {
     path: "player/:id",
-    component: PlayerComponent
+    component: PlayerComponent,
   },
   {
     path: "addPlayer/success",
-    component: AddPlayerSuccessComponent
+    component: AddPlayerSuccessComponent,
   },
   {
     path: "table",
-    component: TableComponent
+    component: TableComponent,
   },
   {
     path: "myPositions",
-    component: MyPositionsComponent
+    component: MyPositionsComponent,
   },
   {
     path: "**",
-    component: PageNotFoundComponent
-  }
-
-
+    component: PageNotFoundComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

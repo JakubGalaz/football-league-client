@@ -1,8 +1,7 @@
-body{
-  background-image: url( "../../assets/backgraund.jpg");
-
+body {
+  background-image: url("../../assets/backgraund.jpg");
 }
 
-.myTable{
- padding: 1%;
+.myTable {
+  padding: 1%;
 }

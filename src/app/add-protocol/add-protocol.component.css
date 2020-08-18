@@ -1,35 +1,30 @@
-
-
-
 * {
   box-sizing: border-box;
 }
 
-button{
+button {
   display: block;
   z-index: 9999;
 }
 
-.padding{
+.padding {
   padding: 2%;
 }
 
-
-.basicInfo
-{
+.basicInfo {
   display: inline-block;
-position: absolute;
+  position: absolute;
   padding: 1%;
-background-color: white;
+  background-color: white;
   border-radius: 10px;
 }
 
-.homeAway{
+.homeAway {
   display: inline-block;
   margin-left: 250px;
   background-color: white;
 }
-.teamData{
+.teamData {
   padding: 2%;
   display: inline-block;
   position: absolute;
@@ -45,15 +40,13 @@ background-color: white;
   height: 500px;
   z-index: 0;
   font-size: 120%;
-
 }
 
-.myButton
-{
-display: block;
+.myButton {
+  display: block;
 }
 
-.hostPlayers{
+.hostPlayers {
   display: inline-block;
 }
 
@@ -62,12 +55,10 @@ display: block;
   float: left;
 }
 
-
 html,
 body {
-
-  background: url( "../../assets/backgraund.jpg") no-repeat fixed center;
-height: 250%;
+  background: url("../../assets/backgraund.jpg") no-repeat fixed center;
+  height: 250%;
 }
 .test {
   overflow: hidden;

@@ -1,32 +1,28 @@
-
-body{
-  background-image: url( "../../assets/backgraund.jpg");
-
+body {
+  background-image: url("../../assets/backgraund.jpg");
 }
 
-.padding{
+.padding {
   padding: 2%;
 }
 
-.register{
+.register {
   padding: 1%;
   border-radius: 10px;
   background: snow;
   display: inline-block;
 }
 
-input{
+input {
   display: block;
 }
 
-h1{
+h1 {
   color: white;
   padding: 2%;
 }
 
-mat-form-field
-{
+mat-form-field {
   display: block;
   max-width: 250px;
 }
-

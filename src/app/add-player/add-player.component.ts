@@ -3,7 +3,7 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  AbstractControl
+  AbstractControl,
 } from "@angular/forms";
 import { Player } from "../Player";
 import { PlayerServiceService } from "../player-service.service";
@@ -16,18 +16,16 @@ interface Position {
 @Component({
   selector: "app-add-player",
   templateUrl: "./add-player.component.html",
-  styleUrls: ["./add-player.component.css"]
+  styleUrls: ["./add-player.component.css"],
 })
 export class AddPlayerComponent implements OnInit {
-
-
   message = new Player();
 
   positions: Position[] = [
     { value: "Bramkarz", viewValue: "Bramkarz" },
     { value: "Obrońca", viewValue: "Obrońca" },
     { value: "Napastnik", viewValue: "Napastnik" },
-    { value: "Pomocnik", viewValue: "Pomocnik" }
+    { value: "Pomocnik", viewValue: "Pomocnik" },
   ];
 
   playerForm: FormGroup;
@@ -39,26 +37,26 @@ export class AddPlayerComponent implements OnInit {
       name: new FormControl(null, [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(15)
+        Validators.maxLength(15),
       ]),
       surname: new FormControl(null, [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(15)
+        Validators.maxLength(15),
       ]),
       age: new FormControl(null, [
         Validators.required,
         CustomValidator.numeric,
         Validators.minLength(1),
-        Validators.maxLength(2)
+        Validators.maxLength(2),
       ]),
       club: new FormControl(null, [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(30)
+        Validators.maxLength(30),
       ]),
 
-      position: new FormControl(null, Validators.required)
+      position: new FormControl(null, Validators.required),
     });
   }
 
@@ -77,19 +75,18 @@ export class AddPlayerComponent implements OnInit {
 
     const newPlayer: Player = {
       name: this.message.name,
-      age: this.message.age
+      age: this.message.age,
     };
 
-    this.playerService.postPlayer(this.message).subscribe(player => {
-      console.log("Create player: " + player);
-    },
-      err => {
-      console.log(err);
-
-    });
+    this.playerService.postPlayer(this.message).subscribe(
+      (player) => {
+        console.log("Create player: " + player);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
-
-
 }
 
 export class CustomValidator {
@@ -99,7 +96,7 @@ export class CustomValidator {
     if (val === null || val === "") return null;
 
     if (!val.toString().match(/^[0-9]+(\.?[0-9]+)?$/))
-      return {invalidNumber: true};
+      return { invalidNumber: true };
 
     return null;
   }

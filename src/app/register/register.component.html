@@ -1,75 +1,82 @@
 <body>
+  <h1>Rejestracja</h1>
 
-<h1>Rejestracja</h1>
+  <div class="padding">
+    <div class="register">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <input
+            matInput
+            type="email"
+            id="email"
+            formControlName="email"
+            placeholder="email"
+          />
+        </mat-form-field>
+        <div
+          class="alert alert alert-info"
+          *ngIf="
+            registerForm.get('email').errors &&
+            registerForm.get('email').errors['email'] &&
+            registerForm.get('email').dirty
+          "
+        >
+          Zły adres e-mail
+        </div>
+        <div
+          class="alert alert alert-info"
+          *ngIf="
+            registerForm.get('email').invalid && registerForm.get('email').dirty
+          "
+        >
+          Pole wymagane!
+        </div>
 
-<div class="padding">
-<div class="register">
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-<mat-form-field>
-  <input  matInput
-          type="email"
-          id="email"
-          formControlName="email"
-          placeholder="email"
-  />
-</mat-form-field>
-<div
-  class="alert alert alert-info"
-  *ngIf="
-          registerForm.get('email').errors &&
-          registerForm.get('email').errors['email'] &&
-          registerForm.get('email').dirty
-        "
->
-  Zły adres e-mail
-</div>
-<div
-  class="alert alert alert-info"
-  *ngIf="
-          registerForm.get('email').invalid && registerForm.get('email').dirty
-        "
->
-  Pole wymagane!
-</div>
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            id="password"
+            formControlName="password"
+            placeholder="Hasło"
+          />
+        </mat-form-field>
+        <div
+          class="alert alert alert-info"
+          *ngIf="
+            registerForm.get('password').invalid &&
+            registerForm.get('password').dirty
+          "
+        >
+          Pole jest wymaganie i musi posiadac od 5 do 20 znakow
+        </div>
 
-<mat-form-field>
-  <input  matInput
-          type="password"
-          id="password"
-          formControlName="password"
-          placeholder="Hasło"
-  />
-</mat-form-field>
-<div    class="alert alert alert-info"
-        *ngIf="
-          registerForm.get('password').invalid &&
-          registerForm.get('password').dirty
-        "
->
-  Pole jest wymaganie i musi posiadac od 5 do 20 znakow
-</div>
+        <!--<mat-form-field>-->
+        <!--  <input  matInput-->
+        <!--          type="password"-->
+        <!--          id="repeatPassword"-->
+        <!--          formControlName="repeatPassword"-->
+        <!--          placeholder="Powtorz hasło"-->
+        <!--  />-->
+        <!--</mat-form-field>-->
+        <!--<div    class="alert alert alert-info"-->
+        <!--        *ngIf="-->
+        <!--          registerForm.get('repeatPassword').invalid &&-->
+        <!--          registerForm.get('repeatPassword').dirty-->
+        <!--        "-->
+        <!--&gt;-->
+        <!--  Hasła nie są identyczne!-->
 
+        <!--</div>-->
 
-<!--<mat-form-field>-->
-<!--  <input  matInput-->
-<!--          type="password"-->
-<!--          id="repeatPassword"-->
-<!--          formControlName="repeatPassword"-->
-<!--          placeholder="Powtorz hasło"-->
-<!--  />-->
-<!--</mat-form-field>-->
-<!--<div    class="alert alert alert-info"-->
-<!--        *ngIf="-->
-<!--          registerForm.get('repeatPassword').invalid &&-->
-<!--          registerForm.get('repeatPassword').dirty-->
-<!--        "-->
-<!--&gt;-->
-<!--  Hasła nie są identyczne!-->
-
-<!--</div>-->
-
-<button class="btn btn-dark" [disabled]="registerForm.invalid" (click)="signup()">Zarejestruj</button>
-</form>
-</div>
-</div>
+        <button
+          class="btn btn-dark"
+          [disabled]="registerForm.invalid"
+          (click)="signup()"
+        >
+          Zarejestruj
+        </button>
+      </form>
+    </div>
+  </div>
 </body>

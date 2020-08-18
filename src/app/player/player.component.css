@@ -1,9 +1,8 @@
-body{
-  background-image: url( "../../assets/backgraund.jpg");
+body {
+  background-image: url("../../assets/backgraund.jpg");
 }
 
-.myInfo{
-
+.myInfo {
   padding: 3%;
 }
 img {
@@ -13,33 +12,32 @@ img {
   width: 100px;
 }
 
-.playerInfo{
+.playerInfo {
   border-radius: 10px;
   padding: 2%;
   display: table;
   background: whitesmoke;
 }
-.firstInfo{
+.firstInfo {
   float: left;
 }
 
-.secondInfo{
+.secondInfo {
   float: left;
 }
-.assists{
-
+.assists {
 }
 
-.avatar{
-float: left;
+.avatar {
+  float: left;
   padding: 1%;
 }
 
-.name{
+.name {
   padding: 1%;
   float: left;
 }
 
-.position{
+.position {
   float: left;
 }

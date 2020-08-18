@@ -2,15 +2,26 @@
   <nav class="navbar navbar-dark bg-dark">
     <div>
       <a class="navbar-brand" href="/welcomePage">Liga</a>
-      <button  *ngIf="authService.user"  class="btn btn-dark" mat-button [matMenuTriggerFor]="aboveMenu">
+      <button
+        *ngIf="authService.user"
+        class="btn btn-dark"
+        mat-button
+        [matMenuTriggerFor]="aboveMenu"
+      >
         Drużyna
       </button>
-      <mat-menu #aboveMenu="matMenu" yPosition="above" >
-        <button mat-menu-item routerLink="addTeam">Dodaj drużynę </button>
-        <button mat-menu-item  routerLink="deleteTeam">Usuń drużunę</button>
+      <mat-menu #aboveMenu="matMenu" yPosition="above">
+        <button mat-menu-item routerLink="addTeam">Dodaj drużynę</button>
+        <button mat-menu-item routerLink="deleteTeam">Usuń drużunę</button>
       </mat-menu>
 
-      <button  id="player" *ngIf="authService.user"  class="btn btn-dark" mat-button [matMenuTriggerFor]="belowMenu">
+      <button
+        id="player"
+        *ngIf="authService.user"
+        class="btn btn-dark"
+        mat-button
+        [matMenuTriggerFor]="belowMenu"
+      >
         Zawodnik
       </button>
       <mat-menu #belowMenu="matMenu" yPosition="below">
@@ -18,7 +29,12 @@
         <button mat-menu-item routerLink="deletePlayer">Usuń zawodnika</button>
       </mat-menu>
 
-      <button  *ngIf="authService.user" class="btn btn-dark" mat-button [matMenuTriggerFor]="beforeMenu">
+      <button
+        *ngIf="authService.user"
+        class="btn btn-dark"
+        mat-button
+        [matMenuTriggerFor]="beforeMenu"
+      >
         Protokół
       </button>
       <mat-menu #beforeMenu="matMenu" xPosition="before">
@@ -30,32 +46,45 @@
         Topowi gracze
       </button>
       <mat-menu #afterMenu="matMenu" xPosition="after">
-        <button mat-menu-item  routerLink="bestScorrer">TOP strzelcy</button>
-        <button mat-menu-item  routerLink="bestAssistants">TOP asystenci</button>
+        <button mat-menu-item routerLink="bestScorrer">TOP strzelcy</button>
+        <button mat-menu-item routerLink="bestAssistants">TOP asystenci</button>
       </mat-menu>
 
-      <button routerLink="table" class="btn btn-dark" mat-button >
-       Tabela
+      <button routerLink="table" class="btn btn-dark" mat-button>
+        Tabela
       </button>
 
-
-      <button *ngIf="authService.user"  routerLink="myPositions" class="btn btn-dark" mat-button >
+      <button
+        *ngIf="authService.user"
+        routerLink="myPositions"
+        class="btn btn-dark"
+        mat-button
+      >
         Ulubione
       </button>
 
-      <span *ngIf="authService.user"  style="color: cornflowerblue">Jesteś zalogowany jako {{authService.user.email}}</span>
+      <span *ngIf="authService.user" style="color: cornflowerblue;"
+        >Jesteś zalogowany jako {{ authService.user.email }}</span
+      >
     </div>
     <ng-container class="login">
-
-      <button *ngIf="!authService.user" routerLink="login" class="btn btn-success" >
+      <button
+        *ngIf="!authService.user"
+        routerLink="login"
+        class="btn btn-success"
+      >
         Zaloguj
       </button>
 
-      <button style="right: 3%; position: absolute; display: inline-block" *ngIf="authService.user"  routerLink="welcomePage" class="btn btn-success" (click)="logout()">
+      <button
+        style="right: 3%; position: absolute; display: inline-block;"
+        *ngIf="authService.user"
+        routerLink="welcomePage"
+        class="btn btn-success"
+        (click)="logout()"
+      >
         Wyloguj
       </button>
-
-
     </ng-container>
   </nav>
 

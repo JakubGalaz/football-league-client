@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DeleteTeamComponent } from './delete-team.component';
+import { DeleteTeamComponent } from "./delete-team.component";
 
-describe('DeleteTeamComponent', () => {
+describe("DeleteTeamComponent", () => {
   let component: DeleteTeamComponent;
   let fixture: ComponentFixture<DeleteTeamComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeleteTeamComponent ]
-    })
-    .compileComponents();
+      declarations: [DeleteTeamComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('DeleteTeamComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

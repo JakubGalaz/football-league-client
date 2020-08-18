@@ -22,39 +22,36 @@ import { MatChipsModule } from "@angular/material/chips";
 import { DeletePlayerComponent } from "./delete-player/delete-player.component";
 import { DeleteTeamComponent } from "./delete-team/delete-team.component";
 import { MatTableModule } from "@angular/material/table";
-import { DeleteSuccessComponent } from './delete-team/delete-success/delete-success.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { WelcomePageComponent } from './welcome-page/welcome-page.component';
-import { MatSortModule} from '@angular/material/sort';
-import { DeleteProtocolComponent } from './delete-protocol/delete-protocol.component';
-import {ProtocolServiceService} from "./protocol-service.service";
-import { PlayerComponent } from './player/player.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from "@angular/material/core";
-import { AddPlayerSuccessComponent } from './add-player/add-player-success/add-player-success.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatTreeModule} from '@angular/material/tree';
+import { DeleteSuccessComponent } from "./delete-team/delete-success/delete-success.component";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { WelcomePageComponent } from "./welcome-page/welcome-page.component";
+import { MatSortModule } from "@angular/material/sort";
+import { DeleteProtocolComponent } from "./delete-protocol/delete-protocol.component";
+import { ProtocolServiceService } from "./protocol-service.service";
+import { PlayerComponent } from "./player/player.component";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
+import { AddPlayerSuccessComponent } from "./add-player/add-player-success/add-player-success.component";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatTreeModule } from "@angular/material/tree";
 import { DatePipe } from "@angular/common";
-import {TextFieldModule} from '@angular/cdk/text-field';
-import {AngularFireModule} from 'angularfire2';
-import {AngularFireAuthModule} from 'angularfire2/auth';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import {AuthService} from "./auth.service";
-import { BestScorrersComponent } from './best-scorrers/best-scorrers.component';
-import { BestAssistantsComponent } from './best-assistants/best-assistants.component';
-import { TeamComponent } from './team/team.component';
-import { TableComponent } from './table/table.component';
-import { MyPositionsComponent } from './my-positions/my-positions.component';
+import { TextFieldModule } from "@angular/cdk/text-field";
+import { AngularFireModule } from "angularfire2";
+import { AngularFireAuthModule } from "angularfire2/auth";
+import { RegisterComponent } from "./register/register.component";
+import { LoginComponent } from "./login/login.component";
+import { AuthService } from "./auth.service";
+import { BestScorrersComponent } from "./best-scorrers/best-scorrers.component";
+import { BestAssistantsComponent } from "./best-assistants/best-assistants.component";
+import { TeamComponent } from "./team/team.component";
+import { TableComponent } from "./table/table.component";
+import { MyPositionsComponent } from "./my-positions/my-positions.component";
 
-import {MyPositionServiceService} from "./my-position-service.service";
-import {AuthGuardService} from "./auth-guard.service";
-
-
-
+import { MyPositionServiceService } from "./my-position-service.service";
+import { AuthGuardService } from "./auth-guard.service";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAdmAFdkEa4b3OsOXn9bGE_FBjmL2TJGoI",
@@ -63,9 +60,8 @@ const firebaseConfig = {
   projectId: "football-league-65af2",
   storageBucket: "football-league-65af2.appspot.com",
   messagingSenderId: "6310011462",
-  appId: "1:6310011462:web:7e30edb19a8d6f0f03a047"
+  appId: "1:6310011462:web:7e30edb19a8d6f0f03a047",
 };
-
 
 @NgModule({
   declarations: [
@@ -87,7 +83,7 @@ const firebaseConfig = {
     BestAssistantsComponent,
     TeamComponent,
     TableComponent,
-    MyPositionsComponent
+    MyPositionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -117,11 +113,17 @@ const firebaseConfig = {
     MatTreeModule,
     TextFieldModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
-
-
+    AngularFireAuthModule,
   ],
-  providers: [PlayerServiceService, TeamServiceService, ProtocolServiceService, MyPositionServiceService, DatePipe, AuthService, AuthGuardService ],
-  bootstrap: [AppComponent]
+  providers: [
+    PlayerServiceService,
+    TeamServiceService,
+    ProtocolServiceService,
+    MyPositionServiceService,
+    DatePipe,
+    AuthService,
+    AuthGuardService,
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

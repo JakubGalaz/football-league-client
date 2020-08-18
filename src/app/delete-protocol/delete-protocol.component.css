@@ -1,18 +1,15 @@
-body{
-  background-image: url( "../../assets/backgraund.jpg");
+body {
+  background-image: url("../../assets/backgraund.jpg");
 }
 
-
-input{
-
+input {
   filter: alpha(opacity=50);
-
 }
 
-.padding{
+.padding {
   padding: 2%;
 }
 
-.searchBar{
+.searchBar {
   padding: 1%;
 }

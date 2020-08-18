@@ -1,82 +1,53 @@
-<body >
+<body>
+  <div class="myInfo">
+    <div class="playerInfo">
+      <div class="name">
+        <h1>{{ player.surname }}</h1>
+        <h2>{{ player.name }}</h2>
+      </div>
+      <button type="button" class="btn btn-dark" (click)="addToFavourite()">
+        Dodaj do ulubionych
+      </button>
+      <div class="avatar">
+        <img src="../../assets/avatar.png" alt="avatar icon" />
 
-
-
-<div class="myInfo">
-  <div class="playerInfo">
-
-    <div class="name">
-    <h1>{{player.surname}}</h1>
-    <h2>{{player.name}}</h2>
-    </div>
-    <button type="button" class="btn btn-dark" (click)="addToFavourite()">Dodaj do ulubionych</button>
-    <div class="avatar">
-
-      <img src= "../../assets/avatar.png" alt="avatar icon">
-
-
-
-
-        <div>Wiek: {{player.age}}</div>
-
-
-    </div>
-
-
-
-
-
-
-    <div class="firstInfo">
-
-      <div>Nominalna pozycja: {{player.position}}</div>
-
-      <div>Klub: {{player.club}}</div>
-    <div>
-      Gole
-      <i class="fa fa-soccer-ball-o" style="font-size:36px"></i>
-      {{player.goals}}
-    </div>
-
-    <div class="assists">
-      Asysty
-      <i class="fa fa-soccer-ball-o" style="font-size:36px; color: #7f98d3"></i>
-      {{player.assists}}
-    </div>
-
-
-
-
-
-
-      <div class="cardIcon">
-
+        <div>Wiek: {{ player.age }}</div>
       </div>
 
-      <div class="cardIcon">
-Żółte kartki
-        <img src= "../../assets/yellowCard.jpg" alt="yellow card">
-{{player.yellowCards}}
+      <div class="firstInfo">
+        <div>Nominalna pozycja: {{ player.position }}</div>
+
+        <div>Klub: {{ player.club }}</div>
+        <div>
+          Gole
+          <i class="fa fa-soccer-ball-o" style="font-size: 36px;"></i>
+          {{ player.goals }}
+        </div>
+
+        <div class="assists">
+          Asysty
+          <i
+            class="fa fa-soccer-ball-o"
+            style="font-size: 36px; color: #7f98d3;"
+          ></i>
+          {{ player.assists }}
+        </div>
+
+        <div class="cardIcon"></div>
+
+        <div class="cardIcon">
+          Żółte kartki
+          <img src="../../assets/yellowCard.jpg" alt="yellow card" />
+          {{ player.yellowCards }}
+        </div>
+
+        <div>
+          Czerwone kartki
+
+          <img src="../../assets/redCard.jpg" alt="red card" />
+          {{ player.redCards }}
+        </div>
       </div>
-
-      <div>
-        Czerwone kartki
-
-
-
-        <img src= "../../assets/redCard.jpg" alt="red card">
-{{player.redCards}}
-      </div>
-
-
+    </div>
   </div>
-
-
-
-</div>
-</div>
-
-
-
-
 </body>

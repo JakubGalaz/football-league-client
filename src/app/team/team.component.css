@@ -1,5 +1,5 @@
-body{
-  background-image: url( "../../assets/backgraund.jpg");
+body {
+  background-image: url("../../assets/backgraund.jpg");
   min-width: 1980px;
   background-repeat: repeat;
   background-attachment: fixed;
@@ -8,27 +8,24 @@ body{
 
 h1 {
   padding: 1%;
-
 }
 
-.teamTemplate{
+.teamTemplate {
   padding: 2%;
   position: center;
-
 }
 
-.team{
+.team {
   padding: 2%;
   display: inline-block;
   background: whitesmoke;
   border-radius: 20px;
 }
 
-h2{
+h2 {
   padding: 1%;
-
 }
 
-.pointer{
+.pointer {
   cursor: pointer;
 }
