@@ -1,27 +1,84 @@
-# FootballLeague
+## Table of contents
+* [Football League](#football-league)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Use case diagram](#use-case-diagram)
+* [Features](#features)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.3.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Football League
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Technologies
 
-## Running unit tests
+- Angular 8
+- HTML 3 
+- CSS 
+- JavaScript 
+- TypeScript 
+- Bootstrap 
+- Angular Material
+- Firebase
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Setup
 
-## Running end-to-end tests
+The node.js runtime environment is required to run the application. After installing it, run the command line and then go to the main directory of the project. In the console, enter the command ng serve which will start our application. The next step is to open any web browser and enter the address of the local host: localhost: 4200. The application start page will load in your browser.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Use case diagram
 
-## Further help
+![Use case](./images/rysunek6.2.jpg)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Features
+
+Main Page: 
+
+![Main Page](./images/rysunek7.2.png)
+
+ Create an account
+
+![ Create an account](./images/rysunek7.5.png)
+
+Sign in 
+
+![Sign in ](./images/rysunek7.6.png)
+
+
+After loggin
+
+![Sign in ](./images/rysunek7.7.png)
+
+
+User management
+
+![Sign in ](./images/rysunek7.8.png)
+
+Delete player 
+
+![Delete player ](./images/rysunek7.16.png)
+
+
+Favourite items
+
+![Favourite items](./images/rysunek7.20.png)
+
+Add protocol
+
+![Add protocol](./images/rysunek7.22.png)
+
+![Add protocol](./images/rysunek7.23.png)
+
+![Add protocol](./images/rysunek7.24.png)
+
+![Add protocol](./images/rysunek7.25.png)
+
+![Add protocol](./images/rysunek7.27.png)
+
+![Add protocol](./images/rysunek7.26.png)
+
+Sezon table 
+
+![Add protocol](./images/rysunek7.19.png)
